@@ -238,6 +238,7 @@
                 android:layout_marginTop="60dp"
                 android:gravity="center_horizontal"
                 android:textColor="@color/White"
+                android:onClick="register"
                 android:background="@drawable/actionbar_background"
                 android:id="@+id/button" />
         </LinearLayout>
