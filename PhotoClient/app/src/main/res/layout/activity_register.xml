@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="60dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="40dp"
+                android:text="Registreren"
+                android:textColor="@color/MainTextColor"
+                android:textSize="60sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/email_nl"
+                android:padding="10dp"
+                android:textSize="30sp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/tvEmail" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:padding="10dp"
+                android:background="@drawable/edittext_border"
+                android:id="@+id/etEmail" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Wachtwoord"
+                android:layout_marginTop="10dp"
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:id="@+id/tvWachtwoord" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:padding="10dp"
+                android:background="@drawable/edittext_border"
+                android:id="@+id/etWachtwoord" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Naam"
+                android:layout_marginTop="10dp"
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:id="@+id/tvNaam" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:padding="10dp"
+                android:background="@drawable/edittext_border"
+                android:id="@+id/etNaam" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Tussenvoegsel"
+                android:layout_marginTop="10dp"
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:id="@+id/tvTussenvoegsel" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:padding="10dp"
+                android:background="@drawable/edittext_border"
+                android:id="@+id/etTussenvoegsel" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Achternaam"
+                android:layout_marginTop="10dp"
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:id="@+id/tvAchternaam" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:padding="10dp"
+                android:background="@drawable/edittext_border"
+                android:id="@+id/etAchternaam" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Geslacht"
+                android:layout_marginTop="10dp"
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:id="@+id/tvGeslacht" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Man"
+                android:id="@+id/rbMan" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vrouw"
+                android:id="@+id/rbVrouw" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Straatnaam"
+                android:layout_marginTop="10dp"
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:id="@+id/tvStraatnaam" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/edittext_border"
+                android:id="@+id/etStraatnaam" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Huisnummer"
+                android:layout_marginTop="10dp"
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:id="@+id/tvHuisnummer" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/edittext_border"
+                android:id="@+id/etHuisnummer" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Postcode"
+                android:layout_marginTop="10dp"
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:id="@+id/tvPostcode" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_border"
+                android:padding="10dp"
+                android:id="@+id/etPostcode" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Stad"
+                android:layout_marginTop="10dp"
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:id="@+id/tvStad" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_border"
+                android:padding="10dp"
+                android:id="@+id/etStad" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Land"
+                android:layout_marginTop="10dp"
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:id="@+id/tvLand" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_border"
+                android:padding="10dp"
+                android:id="@+id/etLand" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ik ben een fotograaf"
+                android:id="@+id/cbFotograaf" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registreer"
+                android:padding="15dp"
+                android:textSize="30sp"
+                android:layout_marginTop="60dp"
+                android:gravity="center_horizontal"
+                android:textColor="@color/White"
+                android:onClick="register"
+                android:background="@drawable/actionbar_background"
+                android:id="@+id/button" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
