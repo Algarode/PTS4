@@ -234,14 +234,10 @@
                 android:padding="10dp"
                 android:id="@+id/tvLand" />
 
-            <EditText
-                android:layout_width="match_parent"
+            <Spinner
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edittext_border"
-                android:singleLine="true"
-                android:imeOptions="actionNext"
-                android:padding="10dp"
-                android:id="@+id/etLand" />
+                android:id="@+id/spinnerLand" />
 
             <CheckBox
                 android:layout_width="wrap_content"
