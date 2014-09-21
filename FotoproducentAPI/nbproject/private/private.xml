@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Hafid/Documents/NetBeansProjects/FotoproducentAPI/src/java/com/generic/Auth.java</file>
-            <file>file:/C:/Users/Hafid/Documents/NetBeansProjects/FotoproducentAPI/setup/glassfish-resources.xml</file>
-            <file>file:/C:/Users/Hafid/Documents/NetBeansProjects/FotoproducentAPI/src/java/com/generic/ApplicationConfig.java</file>
-            <file>file:/C:/Users/Hafid/Documents/NetBeansProjects/FotoproducentAPI/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/Hafid/Documents/NetBeansProjects/FotoproducentAPI/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/Hafid/Documents/NetBeansProjects/FotoproducentAPI/src/java/com/entities/service/AbstractFacade.java</file>
-            <file>file:/C:/Users/Hafid/Documents/NetBeansProjects/FotoproducentAPI/src/java/com/entities/User.java</file>
+            <file>file:/C:/Users/Hafid/Documents/GitHub/PTS4/FotoproducentAPI/src/java/upload/UploadResource.java</file>
+            <file>file:/C:/Users/Hafid/Documents/GitHub/PTS4/FotoproducentAPI/src/java/com/generic/Auth.java</file>
+            <file>file:/C:/Users/Hafid/Documents/GitHub/PTS4/FotoproducentAPI/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Hafid/Documents/GitHub/PTS4/FotoproducentAPI/src/java/com/generic/ApplicationConfig.java</file>
         </group>
     </open-files>
 </project-private>

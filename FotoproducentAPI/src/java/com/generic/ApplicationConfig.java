@@ -19,7 +19,7 @@ public class ApplicationConfig extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> resources = new java.util.HashSet<>();
-        addRestResourceClasses(resources);
+        addRestResourceClasses(resources);    
         return resources;
     }
 
@@ -31,6 +31,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.generic.Auth.class);
+        resources.add(upload.UploadResource.class);
     }
     
 }

@@ -6,8 +6,6 @@
 
 package com.generic;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
@@ -18,7 +16,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-
+import com.entities.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 /**
  * REST Web Service THIS IS JUST AN EXAMPLE!!!!!!!!
  *
@@ -46,8 +47,22 @@ public class Auth {
     public String Login(@PathParam("param") String username) throws JSONException {
         JSONObject obj = new JSONObject();
         obj.put("username", username);
-
+         
+        Account ac = new Account();
+       
+        ac.setPassword("pass");
+        ac.setUserName(username);
         
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("FotoproducentAPIPU2");
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+        
+        
+        
+        Account a = em.find(Account.class, 1);
+            
+        em.persist(ac);
+        em.getTransaction().commit(); 
         
         return obj.toString();
     }
