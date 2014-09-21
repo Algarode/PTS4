@@ -10,4 +10,9 @@
     <string name="login_login">Inloggen</string>
     <string name="email_nl">Email</string>
 
+    <string-array name="land_array">
+        <item>Nederland</item>
+        <item>België</item>
+    </string-array>
+
 </resources>
