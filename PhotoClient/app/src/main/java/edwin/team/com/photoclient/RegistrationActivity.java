@@ -58,12 +58,27 @@ public class RegistrationActivity extends Activity {
         } else if (!semail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
             Toast.makeText(this, "Geen geldig email adres ingevuld.", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!snaam.matches("")) {
+        } else if (!snaam.matches("[A-Z][a-zA-Z]*")) {
             return;
-        }
+        } else if (!stussenvoegsel.matches("")) {
+            return;
+        } else if (!sachternaam.matches("[a-zA-z]+([ '-][a-zA-Z]+)*")) {
+            return;
+        } else if (!sstraat.matches("")) {
+            return;
+        } else if (!shuisnummer.matches("")) {
+            return;
+        } else if (!spostcode.matches("")) {
+            return;
+        } else if (!sstad.matches("")) {
+            return;
+        } else {
+            // TODO stuur gegevens door naar server
 
-        Intent intent = new Intent(this,uploadActivity.class);
-        startActivity(intent);
-        finish();
+            // Upload activity openen
+            Intent intent = new Intent(this,uploadActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }
