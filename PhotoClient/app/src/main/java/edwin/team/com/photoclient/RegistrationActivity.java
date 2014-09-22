@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -52,7 +53,11 @@ public class RegistrationActivity extends Activity {
         EditText stad = (EditText) findViewById(R.id.etStad);
         String sstad = stad.getText().toString();
 
-        RadioButton fotograaf = (RadioButton) findViewById(R.id.cbFotograaf);
+        RadioButton man = (RadioButton) findViewById(R.id.rbMan);
+        RadioButton vrouw = (RadioButton) findViewById(R.id.rbVrouw);
+        String geslacht = "";
+
+        CheckBox fotograaf = (CheckBox) findViewById(R.id.cbFotograaf);
         boolean isFotograaf = false;
 
         if (semail.matches("") || swachtwoord.matches("") || snaam.matches("") || stussenvoegsel.matches("") || sachternaam.matches("") ||
@@ -65,25 +70,34 @@ public class RegistrationActivity extends Activity {
         } else if (!snaam.matches("[A-Z][a-zA-Z]*")) {
             Toast.makeText(this, "Geen geldige naam ingevuld.", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!stussenvoegsel.matches("")) {
+        } else if (!stussenvoegsel.matches("^[a-zA-Z]+(([\\'\\,\\.\\- ][a-zA-Z ])?[a-zA-Z])$")) {
             Toast.makeText(this, "Geen geldig tussenvoegsel ingevuld.", Toast.LENGTH_SHORT).show();
             return;
         } else if (!sachternaam.matches("[a-zA-z]+([ '-][a-zA-Z]+)*")) {
             Toast.makeText(this, "Geen geldige achternaam ingevuld.", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!sstraat.matches("")) {
+        } else if (!man.isChecked() && !vrouw.isChecked()) {
+            Toast.makeText(this, "Er is geen geslacht geselecteerd.", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (!sstraat.matches("^([1-9][e][\\s])*([a-zA-Z]+(([\\.][\\s])|([\\s]))?")) {
             Toast.makeText(this, "Geen geldige straatnaam ingevuld.", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!shuisnummer.matches("")) {
+        } else if (!shuisnummer.matches("[1-9][0-9]*(([-][1-9][0-9]*)|([\\s]?[a-zA-Z]+))?$")) {
             Toast.makeText(this, "Geen geldig huisnummer ingevuld.", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!spostcode.matches("")) {
+        } else if (!spostcode.matches("^[1-9][0-9]{3}[\\s]?[A-Za-z]{2}$")) {
             Toast.makeText(this, "Geen geldige postcode ingevuld.", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!sstad.matches("")) {
+        } else if (!sstad.matches("^(([2][e][[:space:]]|['][ts][-[:space:]]))?[ëéÉËa-zA-Z]{2,}((\\s|[-](\\s)?)[ëéÉËa-zA-Z]{2,})*$")) {
             Toast.makeText(this, "Geen geldige stad ingevuld.", Toast.LENGTH_SHORT).show();
             return;
         } else {
+            if (man.isChecked()) {
+                geslacht = "man";
+            } else {
+                geslacht = "vrouw";
+            }
+
             if (fotograaf.isChecked()) {
                 isFotograaf = true;
             }
