@@ -12,6 +12,9 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class RegistrationActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,8 +104,26 @@ public class RegistrationActivity extends Activity {
             if (fotograaf.isChecked()) {
                 isFotograaf = true;
             }
+            
+            JSONObject object = new JSONObject();
+            try {
+                object.put("email", semail);
+                object.put("password", swachtwoord);
+                object.put("naam", snaam);
+                object.put("tussenvoegsel", stussenvoegsel);
+                object.put("achternaam", sachternaam);
+                object.put("geslacht", geslacht);
+                object.put("straat", sstraat);
+                object.put("huisnummer", shuisnummer);
+                object.put("postcode", spostcode);
+                object.put("stad", sstad);
+                object.put("fotograaf", isFotograaf);
 
-            // TODO stuur gegevens door naar server
+                String json = object.toString();
+                // Post String naar webservice
+            } catch (JSONException ex) {
+                ex.getMessage();
+            }
 
             // Upload activity openen
             Intent intent = new Intent(this,uploadActivity.class);
