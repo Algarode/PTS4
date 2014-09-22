@@ -29,9 +29,12 @@ public class RegistrationActivity extends Activity {
     }
 
     public void register(View view) {
+        // Email veld zoeken
         EditText email = (EditText) findViewById(R.id.etEmail);
+        // String gemaakt die gevuld wordt met de text van het email-veld
         String semail = email.getText().toString();
 
+        // Bovenstaande commentaar is van toepassing op onderstaande EditTexts
         EditText wachtwoord = (EditText) findViewById(R.id.etWachtwoord);
         String swachtwoord = wachtwoord.getText().toString();
 
@@ -63,11 +66,14 @@ public class RegistrationActivity extends Activity {
         CheckBox fotograaf = (CheckBox) findViewById(R.id.cbFotograaf);
         boolean isFotograaf = false;
 
+        // Controleren of er velden leeg zijn
         if (semail.matches("") || swachtwoord.matches("") || snaam.matches("") || stussenvoegsel.matches("") || sachternaam.matches("") ||
                 sstraat.matches("") || shuisnummer.matches("") || spostcode.matches("") || sstad.matches("")) {
+            // Toast (notificatie) laten zien als er velden leeg zijn
             Toast.makeText(this, "Sommige velden zijn niet ingevuld.", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!semail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
+        } else if (!semail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) { // Controleren of het email veld voldoet aan de regex
+            // Toast (notificatie) laten zien als er geen geldig email adres is ingevuld
             Toast.makeText(this, "Geen geldig email adres ingevuld.", Toast.LENGTH_SHORT).show();
             return;
         } else if (!snaam.matches("[A-Z][a-zA-Z]*")) {
@@ -95,18 +101,22 @@ public class RegistrationActivity extends Activity {
             Toast.makeText(this, "Geen geldige stad ingevuld.", Toast.LENGTH_SHORT).show();
             return;
         } else {
+            // Geslacht checken
             if (man.isChecked()) {
                 geslacht = "man";
             } else {
                 geslacht = "vrouw";
             }
 
+            // Controleren of de fotograaf checkbox is geselecteerd
             if (fotograaf.isChecked()) {
                 isFotograaf = true;
             }
-            
+
+            // JSONObject maken, hier worden de waardes van de tekstvelden ingestopt
             JSONObject object = new JSONObject();
             try {
+                // Alle velden putten
                 object.put("email", semail);
                 object.put("password", swachtwoord);
                 object.put("naam", snaam);
@@ -119,8 +129,9 @@ public class RegistrationActivity extends Activity {
                 object.put("stad", sstad);
                 object.put("fotograaf", isFotograaf);
 
+                // Het JSONObject "converteren" naar String. Deze String kan weer worden doorgestuurd naar de webservice
                 String json = object.toString();
-                // Post String naar webservice
+                // TODO Post String naar webservice
             } catch (JSONException ex) {
                 ex.getMessage();
             }
