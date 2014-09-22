@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -51,6 +52,9 @@ public class RegistrationActivity extends Activity {
         EditText stad = (EditText) findViewById(R.id.etStad);
         String sstad = stad.getText().toString();
 
+        RadioButton fotograaf = (RadioButton) findViewById(R.id.cbFotograaf);
+        boolean isFotograaf = false;
+
         if (semail.matches("") || swachtwoord.matches("") || snaam.matches("") || stussenvoegsel.matches("") || sachternaam.matches("") ||
                 sstraat.matches("") || shuisnummer.matches("") || spostcode.matches("") || sstad.matches("")) {
             Toast.makeText(this, "Sommige velden zijn niet ingevuld.", Toast.LENGTH_SHORT).show();
@@ -59,20 +63,31 @@ public class RegistrationActivity extends Activity {
             Toast.makeText(this, "Geen geldig email adres ingevuld.", Toast.LENGTH_SHORT).show();
             return;
         } else if (!snaam.matches("[A-Z][a-zA-Z]*")) {
+            Toast.makeText(this, "Geen geldige naam ingevuld.", Toast.LENGTH_SHORT).show();
             return;
         } else if (!stussenvoegsel.matches("")) {
+            Toast.makeText(this, "Geen geldig tussenvoegsel ingevuld.", Toast.LENGTH_SHORT).show();
             return;
         } else if (!sachternaam.matches("[a-zA-z]+([ '-][a-zA-Z]+)*")) {
+            Toast.makeText(this, "Geen geldige achternaam ingevuld.", Toast.LENGTH_SHORT).show();
             return;
         } else if (!sstraat.matches("")) {
+            Toast.makeText(this, "Geen geldige straatnaam ingevuld.", Toast.LENGTH_SHORT).show();
             return;
         } else if (!shuisnummer.matches("")) {
+            Toast.makeText(this, "Geen geldig huisnummer ingevuld.", Toast.LENGTH_SHORT).show();
             return;
         } else if (!spostcode.matches("")) {
+            Toast.makeText(this, "Geen geldige postcode ingevuld.", Toast.LENGTH_SHORT).show();
             return;
         } else if (!sstad.matches("")) {
+            Toast.makeText(this, "Geen geldige stad ingevuld.", Toast.LENGTH_SHORT).show();
             return;
         } else {
+            if (fotograaf.isChecked()) {
+                isFotograaf = true;
+            }
+
             // TODO stuur gegevens door naar server
 
             // Upload activity openen
