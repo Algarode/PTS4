@@ -17,4 +17,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
 
+    <string-array name="land_array">
+        <item>Nederland</item>
+        <item>België</item>
+    </string-array>
+
 </resources>
