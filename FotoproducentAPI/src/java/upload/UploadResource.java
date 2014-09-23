@@ -19,6 +19,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.mail.Multipart;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.ws.rs.Consumes;
@@ -45,8 +48,12 @@ import org.codehaus.jettison.json.JSONObject;
  */
 @MultipartConfig
 @Path("upload")
-public class UploadResource extends HttpServlet{ 
-
+public class UploadResource extends HttpServlet{
+    
+    private final EntityManagerFactory factory = Persistence.createEntityManagerFactory("FotoproducentAPIPU2");
+    private final EntityManager em = factory.createEntityManager();
+    
+    
     @Context
     private UriInfo context;
 
@@ -71,35 +78,40 @@ public class UploadResource extends HttpServlet{
 
     @POST
     @Path("image")
-    @Consumes("multipart/form-data")
-    public String uploadImage(@FormDataParam("file") InputStream file1) throws FileNotFoundException, IOException, JSONException {
-        
-        FileInputStream fis = new FileInputStream("C:\\Users\\Hafid\\Pictures\\7PoqEkf.jpg");
-        
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        IOUtils.copy(fis, buffer);
-        byte [] data = buffer.toByteArray();
-        String s = Base64.encode(data);
-        String hex = Hex.encodeHex(data).toString();
-        JSONObject ob = new JSONObject();
-        ob.put("image", s);
-        ob.put("name", "hafid");
-        
-        
-    return ob.toString();
-    }
-    
-       
-    @POST
-    @Path("/testing") 
     @Consumes(MediaType.APPLICATION_JSON)
-    public String testing(String json) throws JSONException, FileNotFoundException, IOException {
-                
-        JSONObject obj = new JSONObject(json);
+    public void uploadImage(String Json) throws JSONException, IOException {
         
-
-        return obj.toString();
+        JSONObject jObj = new JSONObject(Json);
+        
+        String hexString = jObj.getString("image");
+        String extension = jObj.getString("extension");
+        String imageName = jObj.getString("name");
+        Integer userId = jObj.getInt("userID");
+        
+        String location = SaveHexImage(hexString, extension, imageName, userId);
+        
+        
+        
+    
     }
     
     
-} 
+    private String SaveHexImage(String hex, String extension,
+            String name, Integer userId) throws IOException{
+        if(hex.isEmpty())
+            return null;
+        
+        String location = "c:/"+userId+"/" +name+"."+extension;
+        
+        byte[] barr = DatatypeConverter.parseHexBinary(hex);
+        
+        InputStream in = new ByteArrayInputStream(barr);
+        BufferedImage bImageFromConvert = ImageIO.read(in);
+        //Original sized
+        ImageIO.write(bImageFromConvert, extension , new File(location));    
+        //Lowres 500 x 500 px version
+        bImageFromConvert.getGraphics().drawImage(bImageFromConvert, 500, 500, null);
+        
+        return location;
+    }
+}

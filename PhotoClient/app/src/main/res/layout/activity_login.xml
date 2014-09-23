@@ -5,70 +5,84 @@
     tools:context=".LoginActivity">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <LinearLayout
-        android:padding="60dp"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
-    <TextView
-        android:text="@string/login_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/MainTextColor"
-        android:textSize="60sp"/>
-    <TextView
-        android:layout_marginTop="40dp"
-        android:layout_width="wrap_content"
-        android:text="@string/login_email"
-        android:textSize="30sp"
-        android:textColor="@color/MainTextColor"
-        android:padding="10dp"
-        android:id="@+id/login_email"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/MainTextColor"
-        android:textSize="30sp"
-        android:padding="10dp"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        android:background="@drawable/edittext_border">
-    </EditText>
-    <TextView
-        android:layout_marginTop="40dp"
-        android:text="@string/login_password"
-        android:layout_width="wrap_content"
-        android:textColor="@color/MainTextColor"
-        android:textSize="30sp"
-        android:padding="10dp"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:layout_width="match_parent"
-        android:textSize="30sp"
-        android:textColor="@color/MainTextColor"
-        android:layout_height="wrap_content"
-        android:password="true"
-        android:singleLine="true"
-        android:imeOptions="actionDone"
-        android:padding="10dp"
-        android:id="@+id/login_password"
-        android:background="@drawable/edittext_border"/>
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/login_background">
+        <LinearLayout
+            android:padding="60dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
 
-    <Button
-        android:layout_marginTop="60dp"
-        android:textSize="30sp"
-        android:padding="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/actionbar_background"
-        android:textColor="@color/White"
-        android:onClick="login"
-        android:id="@+id/login_submit"
-        android:text="@string/login_button"/>
-    </LinearLayout>
+            <TableLayout android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="match_parent">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="15dp">
+                    <ImageView
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/user"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/White"
+                        android:textSize="30sp"
+                        android:padding="10dp"
+                        android:singleLine="true"
+                        android:imeOptions="actionNext"
+                        android:background="@drawable/edittext_border"
+                        android:hint="Username"
+                        android:layout_weight="0.9" >
+                    </EditText>
+                </TableRow>
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="1.5dp">
+                    <ImageView
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/lock"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:textSize="30sp"
+                        android:textColor="@color/White"
+                        android:layout_height="wrap_content"
+                        android:password="true"
+                        android:singleLine="true"
+                        android:imeOptions="actionDone"
+                        android:padding="10dp"
+                        android:id="@+id/login_password"
+                        android:background="@drawable/edittext_border"
+                        android:hint="Password"
+                        android:layout_weight="0.9" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="1.5dp">
+                    <Button
+                        android:layout_marginTop="60dp"
+                        android:textSize="30sp"
+                        android:padding="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:textColor="@color/White"
+                        android:onClick="login"
+                        android:id="@+id/login_submit"
+                        android:text="@string/login_button" />
+                </TableRow>
+            </TableLayout>
+
+
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>
 

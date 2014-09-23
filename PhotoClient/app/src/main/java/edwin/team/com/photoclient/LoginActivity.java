@@ -17,7 +17,7 @@ public class LoginActivity extends Activity {
     }
 
     public void login(View view) {
-        Intent intent = new Intent(this,RegistrationActivity.class);
+        Intent intent = new Intent(this,DashboardActivity.class);
         this.startActivity(intent);
         finish();
     }
