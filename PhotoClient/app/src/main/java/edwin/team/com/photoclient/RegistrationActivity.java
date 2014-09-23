@@ -71,6 +71,7 @@ public class RegistrationActivity extends Activity {
                 sstraat.matches("") || shuisnummer.matches("") || spostcode.matches("") || sstad.matches("")) {
             // Toast (notificatie) laten zien als er velden leeg zijn
             Toast.makeText(this, "Sommige velden zijn niet ingevuld.", Toast.LENGTH_SHORT).show();
+            // Uit de if springen als het fout gaat
             return;
         } else if (!semail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) { // Controleren of het email veld voldoet aan de regex
             // Toast (notificatie) laten zien als er geen geldig email adres is ingevuld
@@ -132,9 +133,12 @@ public class RegistrationActivity extends Activity {
                 // Het JSONObject "converteren" naar String. Deze String kan weer worden doorgestuurd naar de webservice
                 String json = object.toString();
                 // TODO Post String naar webservice
+
             } catch (JSONException ex) {
                 ex.getMessage();
             }
+
+            Toast.makeText("Uw registratie is verstuurd.", Toast.LENGTH_LONG);
 
             // Upload activity openen
             Intent intent = new Intent(this,uploadActivity.class);
