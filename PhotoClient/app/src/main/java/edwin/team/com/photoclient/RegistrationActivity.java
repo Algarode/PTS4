@@ -15,6 +15,11 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.DataOutputStream;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
+
 public class RegistrationActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +33,7 @@ public class RegistrationActivity extends Activity {
         spinner.setAdapter(adapter);
     }
 
-    public void register(View view) {
+    public void register(View view) throws Exception {
         // Email veld zoeken
         EditText email = (EditText) findViewById(R.id.etEmail);
         // String gemaakt die gevuld wordt met de text van het email-veld
@@ -132,13 +137,27 @@ public class RegistrationActivity extends Activity {
 
                 // Het JSONObject "converteren" naar String. Deze String kan weer worden doorgestuurd naar de webservice
                 String json = object.toString();
-                // TODO Post String naar webservice
+                // Post String naar webservice
+                String url = "http://192.168.99.118:8080/fotoproducentapi/";
+                URL obj = new URL(url);
+                HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
 
+                con.setRequestMethod("POST");
+                con.setRequestProperty("User-Agent", "Mozilla/0.5");
+                con.setRequestProperty("Accept-Language", "en-US,en,q=0.5");
+
+                String urlParameters = json;
+
+                con.setDoOutput(true);
+                DataOutputStream dos = new DataOutputStream(con.getOutputStream());
+                dos.writeBytes(urlParameters);
+                dos.flush();
+                dos.close();
             } catch (JSONException ex) {
                 ex.getMessage();
             }
 
-            Toast.makeText("Uw registratie is verstuurd.", Toast.LENGTH_LONG);
+            Toast.makeText(this, "Uw registratie is verstuurd.", Toast.LENGTH_LONG).show();
 
             // Upload activity openen
             Intent intent = new Intent(this,uploadActivity.class);
