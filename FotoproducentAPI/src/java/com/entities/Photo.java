@@ -7,7 +7,9 @@
 package com.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,14 +17,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Hafid
+ * @author rob
  */
 @Entity
 @Table(name = "photo")
@@ -31,27 +36,21 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Photo.findAll", query = "SELECT p FROM Photo p"),
     @NamedQuery(name = "Photo.findById", query = "SELECT p FROM Photo p WHERE p.id = :id"),
     @NamedQuery(name = "Photo.findByName", query = "SELECT p FROM Photo p WHERE p.name = :name"),
-    @NamedQuery(name = "Photo.findByPrice", query = "SELECT p FROM Photo p WHERE p.price = :price"),
     @NamedQuery(name = "Photo.findByLocation", query = "SELECT p FROM Photo p WHERE p.location = :location"),
-    @NamedQuery(name = "Photo.findBySize", query = "SELECT p FROM Photo p WHERE p.size = :size"),
-    @NamedQuery(name = "Photo.findByExtension", query = "SELECT p FROM Photo p WHERE p.extension = :extension"),
-    @NamedQuery(name = "Photo.findByDimensions", query = "SELECT p FROM Photo p WHERE p.dimensions = :dimensions")})
+    @NamedQuery(name = "Photo.findBySize", query = "SELECT p FROM Photo p WHERE p.size = :size")})
 public class Photo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 11)
     @Column(name = "id")
-    private Integer id;
+    private String id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 60)
     @Column(name = "name")
     private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "price")
-    private double price;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 120)
@@ -61,41 +60,35 @@ public class Photo implements Serializable {
     @NotNull
     @Column(name = "size")
     private int size;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "extension")
-    private String extension;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "dimensions")
-    private double dimensions;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "photoID")
+    private Collection<OrderLine> orderLineCollection;
+    @OneToMany(mappedBy = "photoID")
+    private Collection<com.entities.Collection> collectionCollection;
     @JoinColumn(name = "photographer_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User photographerId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "photoId")
+    private Collection<PhotoShare> photoShareCollection;
 
     public Photo() {
     }
 
-    public Photo(Integer id) {
+    public Photo(String id) {
         this.id = id;
     }
 
-    public Photo(Integer id, String name, double price, String location, int size, String extension, double dimensions) {
+    public Photo(String id, String name, String location, int size) {
         this.id = id;
         this.name = name;
-        this.price = price;
         this.location = location;
         this.size = size;
-        this.extension = extension;
-        this.dimensions = dimensions;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -105,14 +98,6 @@ public class Photo implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public String getLocation() {
@@ -131,20 +116,24 @@ public class Photo implements Serializable {
         this.size = size;
     }
 
-    public String getExtension() {
-        return extension;
+    @XmlTransient
+    @JsonIgnore
+    public Collection<OrderLine> getOrderLineCollection() {
+        return orderLineCollection;
     }
 
-    public void setExtension(String extension) {
-        this.extension = extension;
+    public void setOrderLineCollection(Collection<OrderLine> orderLineCollection) {
+        this.orderLineCollection = orderLineCollection;
     }
 
-    public double getDimensions() {
-        return dimensions;
+    @XmlTransient
+    @JsonIgnore
+    public Collection<com.entities.Collection> getCollectionCollection() {
+        return collectionCollection;
     }
 
-    public void setDimensions(double dimensions) {
-        this.dimensions = dimensions;
+    public void setCollectionCollection(Collection<com.entities.Collection> collectionCollection) {
+        this.collectionCollection = collectionCollection;
     }
 
     public User getPhotographerId() {
@@ -153,6 +142,16 @@ public class Photo implements Serializable {
 
     public void setPhotographerId(User photographerId) {
         this.photographerId = photographerId;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<PhotoShare> getPhotoShareCollection() {
+        return photoShareCollection;
+    }
+
+    public void setPhotoShareCollection(Collection<PhotoShare> photoShareCollection) {
+        this.photoShareCollection = photoShareCollection;
     }
 
     @Override

@@ -5,21 +5,48 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="login_button">Login</string>
-    <string name="login_password">Password</string>
+    <string name="login_password">Wachtwoord</string>
     <string name="login_email">Email</string>
     <string name="login_login">Inloggen</string>
     <string name="email_nl">Email</string>
+    <string name="to_be_uploaded_imageview">contains the to be uploaded image</string>
+    <string name="upload_title">Upload image</string>
+    <string name="textview_image_name">Image name:</string>
     <string name="title_activity_dashboard">Dashboard</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section1">Dashboard</string>
+    <string name="title_section2">Wijzig gegevens</string>
+    <string name="title_section3">Upload</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
+    <string name="name">Naam</string>
+    <string name="tussenvoegsel">Tussenvoegsel</string>
+    <string name="lastName">Achternaam</string>
+    <string name="Street">Straat</string>
+    <string name="houseNumber">Huisnummer</string>
+    <string name="zipcode">Postcode</string>
+    <string name="City">Stad</string>
+    <string name="ifFotograaaf">Fotograaf</string>
+    <string name="register_button">Nog geen account? registreer hier</string>
+    <string name="register">Registreer</string>
 
     <string-array name="land_array">
-        <item>Nederland</item>
-        <item>België</item>
+        <item>NL</item>
+        <item>BE</item>
     </string-array>
+
+    <string name="title_activity_change_user_info">changeUserInfo</string>
+    <string name="save">Opslaan</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_register">Registreer</string>
+    <string name="login_failureTitle">Login mislukt</string>
+    <string name="login_wrongCred">verkeerde gebruikers naam en of wachtwoord</string>
+    <string name="connectionError">Kon geen verbinding maken</string>
+    <string name="Update">Update</string>
+    <string name="upload_bt_select">Select image</string>
+    <string name="upload_bt_upload">Upload</string>
+    <string name="toShoppingCart">Winkelmandje</string>
+    <string name="getPhotoByCode">Haal product op</string>
+    <string name="getPhotoByCodeText">vul hier uw code in</string>
 
 </resources>

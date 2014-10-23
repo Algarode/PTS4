@@ -29,7 +29,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Hafid
+ * @author rob
  */
 @Entity
 @Table(name = "user")
@@ -45,8 +45,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "User.findByCity", query = "SELECT u FROM User u WHERE u.city = :city"),
     @NamedQuery(name = "User.findByPostalCode", query = "SELECT u FROM User u WHERE u.postalCode = :postalCode"),
     @NamedQuery(name = "User.findByGender", query = "SELECT u FROM User u WHERE u.gender = :gender"),
-    @NamedQuery(name = "User.findByCountry", query = "SELECT u FROM User u WHERE u.country = :country"),
-    @NamedQuery(name = "User.findByIsPhotographer", query = "SELECT u FROM User u WHERE u.isPhotographer = :isPhotographer")})
+    @NamedQuery(name = "User.findByCountry", query = "SELECT u FROM User u WHERE u.country = :country")})
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -97,10 +96,14 @@ public class User implements Serializable {
     @Size(min = 1, max = 5)
     @Column(name = "country")
     private String country;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "is_photographer")
-    private boolean isPhotographer;
+    @OneToMany(mappedBy = "photographerID")
+    private Collection<Share> shareCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<Order1> order1Collection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<com.entities.Collection> collectionCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "photographerID")
+    private Collection<SizePrize> sizePrizeCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "photographerId")
     private Collection<Photo> photoCollection;
     @JoinColumn(name = "account_id", referencedColumnName = "id")
@@ -114,7 +117,7 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String firstName, String lastName, String street, String houseNumber, String city, String postalCode, String gender, String country, boolean isPhotographer) {
+    public User(Integer id, String firstName, String lastName, String street, String houseNumber, String city, String postalCode, String gender, String country) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -124,7 +127,6 @@ public class User implements Serializable {
         this.postalCode = postalCode;
         this.gender = gender;
         this.country = country;
-        this.isPhotographer = isPhotographer;
     }
 
     public Integer getId() {
@@ -207,12 +209,44 @@ public class User implements Serializable {
         this.country = country;
     }
 
-    public boolean getIsPhotographer() {
-        return isPhotographer;
+    @XmlTransient
+    @JsonIgnore
+    public Collection<Share> getShareCollection() {
+        return shareCollection;
     }
 
-    public void setIsPhotographer(boolean isPhotographer) {
-        this.isPhotographer = isPhotographer;
+    public void setShareCollection(Collection<Share> shareCollection) {
+        this.shareCollection = shareCollection;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<Order1> getOrder1Collection() {
+        return order1Collection;
+    }
+
+    public void setOrder1Collection(Collection<Order1> order1Collection) {
+        this.order1Collection = order1Collection;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<com.entities.Collection> getCollectionCollection() {
+        return collectionCollection;
+    }
+
+    public void setCollectionCollection(Collection<com.entities.Collection> collectionCollection) {
+        this.collectionCollection = collectionCollection;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<SizePrize> getSizePrizeCollection() {
+        return sizePrizeCollection;
+    }
+
+    public void setSizePrizeCollection(Collection<SizePrize> sizePrizeCollection) {
+        this.sizePrizeCollection = sizePrizeCollection;
     }
 
     @XmlTransient

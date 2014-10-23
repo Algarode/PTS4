@@ -2,6 +2,7 @@ package edwin.team.com.photoclient;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -16,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.DataOutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -78,14 +80,14 @@ public class RegistrationActivity extends Activity {
             Toast.makeText(this, "Sommige velden zijn niet ingevuld.", Toast.LENGTH_SHORT).show();
             // Uit de if springen als het fout gaat
             return;
-        } else if (!semail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) { // Controleren of het email veld voldoet aan de regex
+        } /*else if (!semail.matches("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$")) { // Controleren of het email veld voldoet aan de regex
             // Toast (notificatie) laten zien als er geen geldig email adres is ingevuld
             Toast.makeText(this, "Geen geldig email adres ingevuld.", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!snaam.matches("[A-Z][a-zA-Z]*")) {
+        } else if (!snaam.matches("[a-zA-Z]*")) {
             Toast.makeText(this, "Geen geldige naam ingevuld.", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!stussenvoegsel.matches("^[a-zA-Z]+(([\\'\\,\\.\\- ][a-zA-Z ])?[a-zA-Z])$")) {
+        } else if (!stussenvoegsel.matches("^[a-zA-Z ]+(([\\'\\,\\.\\s-][a-zA-Z\\s])?[a-zA-Z])+$")) {
             Toast.makeText(this, "Geen geldig tussenvoegsel ingevuld.", Toast.LENGTH_SHORT).show();
             return;
         } else if (!sachternaam.matches("[a-zA-z]+([ '-][a-zA-Z]+)*")) {
@@ -94,19 +96,19 @@ public class RegistrationActivity extends Activity {
         } else if (!man.isChecked() && !vrouw.isChecked()) {
             Toast.makeText(this, "Er is geen geslacht geselecteerd.", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!sstraat.matches("^([1-9][e][\\s])*([a-zA-Z]+(([\\.][\\s])|([\\s]))?")) {
+        } else if (!sstraat.matches("^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)$")) {
             Toast.makeText(this, "Geen geldige straatnaam ingevuld.", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!shuisnummer.matches("[1-9][0-9]*(([-][1-9][0-9]*)|([\\s]?[a-zA-Z]+))?$")) {
+        } else if (!shuisnummer.matches("^[0-9]+[a-zA-Z]+|[0-9]+$")) {
             Toast.makeText(this, "Geen geldig huisnummer ingevuld.", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!spostcode.matches("^[1-9][0-9]{3}[\\s]?[A-Za-z]{2}$")) {
+        } else if (!spostcode.matches("^[0-9]{4}[ ]?[a-z|A-Z]{2}$")) {
             Toast.makeText(this, "Geen geldige postcode ingevuld.", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!sstad.matches("^(([2][e][[:space:]]|['][ts][-[:space:]]))?[ëéÉËa-zA-Z]{2,}((\\s|[-](\\s)?)[ëéÉËa-zA-Z]{2,})*$")) {
+        } else if (!sstad.matches("^(([2][e][[:space:]]|['][ts][-[:space:]]))?[ëéÉËa-zA-Z]{2,}((\s|[-](\s)?)[ëéÉËa-zA-Z]{2,})*$")) {
             Toast.makeText(this, "Geen geldige stad ingevuld.", Toast.LENGTH_SHORT).show();
             return;
-        } else {
+        } */else {
             // Geslacht checken
             if (man.isChecked()) {
                 geslacht = "man";
@@ -137,14 +139,17 @@ public class RegistrationActivity extends Activity {
 
                 // Het JSONObject "converteren" naar String. Deze String kan weer worden doorgestuurd naar de webservice
                 String json = object.toString();
+/*
                 // Post String naar webservice
-                String url = "http://192.168.99.118:8080/fotoproducentapi/";
+                String url = "http://192.168.99.118:8080/FotoproducentAPI/api/register/user";
                 URL obj = new URL(url);
-                HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+                HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
                 con.setRequestMethod("POST");
-                con.setRequestProperty("User-Agent", "Mozilla/0.5");
-                con.setRequestProperty("Accept-Language", "en-US,en,q=0.5");
+
+                con.setRequestProperty("User-Agent","Mozilla/0.5");
+                con.setRequestProperty("Content-Type","application/json");
+                con.setRequestProperty("Accept-Language","en-US,en,q=0.5");
 
                 String urlParameters = json;
 
@@ -153,6 +158,12 @@ public class RegistrationActivity extends Activity {
                 dos.writeBytes(urlParameters);
                 dos.flush();
                 dos.close();
+*/
+                // De AsyncTask class ServerManager aanroepen
+                ServerManager sm = new ServerManager();
+                // JSON String meegeven, URL parameters meegeven
+                sm.execute(json, "register/user");
+
             } catch (JSONException ex) {
                 ex.getMessage();
             }

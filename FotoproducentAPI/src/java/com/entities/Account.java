@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -24,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Hafid
+ * @author rob
  */
 @Entity
 @Table(name = "account")
@@ -37,7 +39,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Account implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
@@ -51,6 +53,9 @@ public class Account implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "password")
     private String password;
+    @JoinColumn(name = "roleID", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Roles roleID;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "accountId")
     private User user;
 
@@ -89,6 +94,14 @@ public class Account implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Roles getRoleID() {
+        return roleID;
+    }
+
+    public void setRoleID(Roles roleID) {
+        this.roleID = roleID;
     }
 
     public User getUser() {

@@ -11,4 +11,9 @@
         parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/actionbar_background</item>
     </style>
+
+    <style name="BackgroundTheme"
+        parent="android:Theme.Black.NoTitleBar.Fullscreen">
+        <item name="android:background">#1C3F8A</item>
+    </style>
 </resources>

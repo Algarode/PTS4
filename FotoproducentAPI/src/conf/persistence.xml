@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="FotoproducentAPIPU" transaction-type="JTA">
+  <persistence-unit name="FotoproducentAPIPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>foto_producent</jta-data-source>
-    <properties/>
-  </persistence-unit>
-  <persistence-unit name="FotoproducentAPIPU2" transaction-type="JTA">
-    <jta-data-source>foto_producent</jta-data-source>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties/>
+    <class>com.entities.Account</class>
+    <class>com.entities.Collection</class>
+    <class>com.entities.Order1</class>
+    <class>com.entities.OrderLine</class>
+    <class>com.entities.Photo</class>
+    <class>com.entities.PhotoShare</class>
+    <class>com.entities.Roles</class>
+    <class>com.entities.Share</class>
+    <class>com.entities.Size1</class>
+    <class>com.entities.SizePrize</class>
+    <class>com.entities.User</class>
+    <class>com.entities.Roles</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://31.186.175.188:3306/devimo_pts?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="devimo_pts"/>
+      <property name="javax.persistence.jdbc.password" value="Ob88hLHd"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
   </persistence-unit>
 </persistence>

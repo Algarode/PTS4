@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@drawable/login_background">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:background="@drawable/login_background">
+        android:layout_gravity="center">
         <LinearLayout
             android:padding="60dp"
             android:layout_width="match_parent"
@@ -36,7 +36,9 @@
                         android:singleLine="true"
                         android:imeOptions="actionNext"
                         android:background="@drawable/edittext_border"
+                        android:id="@+id/login_username"
                         android:hint="Username"
+                        android:inputType="textNoSuggestions"
                         android:layout_weight="0.9" >
                     </EditText>
                 </TableRow>
@@ -68,16 +70,33 @@
                     android:layout_height="fill_parent"
                     android:layout_marginBottom="1.5dp">
                     <Button
-                        android:layout_marginTop="60dp"
+                        android:layout_marginTop="30dp"
                         android:textSize="30sp"
                         android:padding="15dp"
                         android:layout_width="match_parent"
+                        android:layout_gravity="left|center_vertical"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
                         android:textColor="@color/White"
                         android:onClick="login"
                         android:id="@+id/login_submit"
                         android:text="@string/login_button" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="1.5dp">
+                    <Button
+                        android:layout_marginTop="10dp"
+                        android:textSize="20sp"
+                        android:padding="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:textColor="@color/White"
+                        android:onClick="toRegister"
+                        android:id="@+id/login_register"
+                        android:text="@string/register_button" />
                 </TableRow>
             </TableLayout>
 
