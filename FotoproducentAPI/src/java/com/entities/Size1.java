@@ -26,7 +26,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author rob
+ * @author Hafid
  */
 @Entity
 @Table(name = "size")
@@ -57,9 +57,9 @@ public class Size1 implements Serializable {
     @Column(name = "price")
     private double price;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sizeID")
-    private Collection<OrderLine> orderLineCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sizeID")
     private Collection<SizePrize> sizePrizeCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sizeID")
+    private Collection<OrderLine> orderLineCollection;
 
     public Size1() {
     }
@@ -109,22 +109,22 @@ public class Size1 implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public Collection<OrderLine> getOrderLineCollection() {
-        return orderLineCollection;
-    }
-
-    public void setOrderLineCollection(Collection<OrderLine> orderLineCollection) {
-        this.orderLineCollection = orderLineCollection;
-    }
-
-    @XmlTransient
-    @JsonIgnore
     public Collection<SizePrize> getSizePrizeCollection() {
         return sizePrizeCollection;
     }
 
     public void setSizePrizeCollection(Collection<SizePrize> sizePrizeCollection) {
         this.sizePrizeCollection = sizePrizeCollection;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<OrderLine> getOrderLineCollection() {
+        return orderLineCollection;
+    }
+
+    public void setOrderLineCollection(Collection<OrderLine> orderLineCollection) {
+        this.orderLineCollection = orderLineCollection;
     }
 
     @Override

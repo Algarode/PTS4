@@ -1,6 +1,8 @@
 package com.general;
 
 import com.entities.Account;
+import com.entities.Collection;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -57,4 +59,15 @@ public class DBM {
             return null;
         }
     }
+    
+    //Misschien later generieke functie maken om meerdere shizzle in een keer op te halen maar voor nu even dit. -hafid-
+   /* 
+    public List<Collection> getCollectionByUserId(int userId)
+    {
+        List<Collection> results = em.createQuery("SELECT t FROM collection t where t.userID = :id")
+                        .setParameter("id", 1).getResultList();
+        
+        return results;
+    }
+    */
 }

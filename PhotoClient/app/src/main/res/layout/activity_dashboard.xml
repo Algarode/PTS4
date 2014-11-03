@@ -41,40 +41,7 @@
         android:name="edwin.team.com.photoclient.Activities.NavigationDrawerFragment"
         tools:layout="@layout/fragment_navigation_drawer"
         />
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:gravity="center">
 
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:paddingRight="50dp"
-        android:text="@string/getPhotoByCodeText"/>
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/UniekeCodeCash"
-        android:textSize="30dp"
-        android:minWidth="225dp"
-        android:maxLength="11" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:paddingRight="50dp"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/getPhotoByCode"
-        android:id="@+id/getPhoto"
-        android:onClick="getPhoto"/>
-    </LinearLayout></LinearLayout>
+
 </android.support.v4.widget.DrawerLayout>

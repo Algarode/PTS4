@@ -151,7 +151,7 @@ public class DashboardActivity extends Activity
     }
 //dashboard item handling
 
-
+/*
     public void getPhoto(View view) throws JSONException {
         //Todo real url, and rest of data handling
         EditText code = (EditText) findViewById(R.id.UniekeCodeCash);
@@ -164,4 +164,5 @@ public class DashboardActivity extends Activity
 
         }
     }
+    */
 }

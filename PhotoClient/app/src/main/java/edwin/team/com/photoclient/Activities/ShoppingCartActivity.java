@@ -2,59 +2,38 @@ package edwin.team.com.photoclient.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Display;
-import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import android.widget.ListView;
 
+import edwin.team.com.photoclient.Classes.ShoppingCart;
 import edwin.team.com.photoclient.R;
 
 public class ShoppingCartActivity extends Activity {
 
+    private ListView listview;
+    private ShoppingCart cart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+        cart = new ShoppingCart();
+        cart.addOrderLine(1,1.55,1,1,getResources().getDrawable( R.drawable.camera ),"test");
+        cart.addOrderLine(2,1.55,1,1,getResources().getDrawable( R.drawable.camera ),"test");
+        cart.addOrderLine(3,1.55,1,1,getResources().getDrawable( R.drawable.camera ),"test");
+        cart.addOrderLine(4,1.55,1,1,getResources().getDrawable( R.drawable.camera ),"test");
+        cart.addOrderLine(5,1.55,1,1,getResources().getDrawable( R.drawable.camera ),"test");
+        cart.addOrderLine(6,1.55,1,1,getResources().getDrawable( R.drawable.camera ),"test");
+        cart.addOrderLine(7,1.55,1,1,getResources().getDrawable( R.drawable.camera ),"test");
+        cart.addOrderLine(8,1.55,1,1,getResources().getDrawable( R.drawable.camera ),"test");
+        cart.addOrderLine(9,1.55,1,1,getResources().getDrawable( R.drawable.camera ),"test");
+        cart.addOrderLine(10,1.55,1,1,getResources().getDrawable( R.drawable.camera ),"test");
+        cart.addOrderLine(11,1.55,1,1,getResources().getDrawable( R.drawable.camera ),"test");
+
         setContentView(R.layout.activity_shoppingcart);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        setupView();
-    }
-
-    private void setupView(){
-        ScrollView Sview = (ScrollView)  findViewById(  R.id.Scroller);
-        Display display = getWindowManager().getDefaultDisplay();
-        Sview.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, display.getHeight() - 150 ));
-        EditText amount = (EditText) findViewById(R.id.sc_Aantal);
-
-        amount.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                int i = Integer.parseInt(s.toString());
-                TextView t = (TextView)findViewById(R.id.PrijspStuk);
-                TextView tv = (TextView)findViewById(R.id.TotaalPrijs);
-                Double l = Double.parseDouble(t.toString());
-                Double price = l *i;
-                tv.setText(price.toString());
-            }
-
-        });
+        listview = (ListView)findViewById(R.id.listview_shop);
+        listview.setAdapter(
+            new ShoppingcartListAdapter(this,cart.getOrders())
+        );
     }
 }

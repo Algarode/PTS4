@@ -41,10 +41,7 @@ public class ChangeAccount {
     private UriInfo context;
     private DBM dbManager;
     
-    
-    EntityManagerFactory factory = Persistence.createEntityManagerFactory("FotoproducentAPIPU");
-    EntityManager em = factory.createEntityManager();
-        
+       
     
     /**
      * Creates a new instance of ChangeAccount

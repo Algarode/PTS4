@@ -4,17 +4,16 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>foto_producent</jta-data-source>
     <class>com.entities.Account</class>
+    <class>com.entities.Album</class>
+    <class>com.entities.Bestelling</class>
     <class>com.entities.Collection</class>
-    <class>com.entities.Order1</class>
     <class>com.entities.OrderLine</class>
     <class>com.entities.Photo</class>
-    <class>com.entities.PhotoShare</class>
+    <class>com.entities.PhotoAlbum</class>
     <class>com.entities.Roles</class>
-    <class>com.entities.Share</class>
     <class>com.entities.Size1</class>
     <class>com.entities.SizePrize</class>
     <class>com.entities.User</class>
-    <class>com.entities.Roles</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

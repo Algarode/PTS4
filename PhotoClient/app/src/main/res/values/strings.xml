@@ -11,7 +11,7 @@
     <string name="email_nl">Email</string>
     <string name="to_be_uploaded_imageview">contains the to be uploaded image</string>
     <string name="upload_title">Upload image</string>
-    <string name="textview_image_name">Image name:</string>
+    <string name="textview_image_name">Unique id:</string>
     <string name="title_activity_dashboard">Dashboard</string>
     <string name="title_section1">Dashboard</string>
     <string name="title_section2">Wijzig gegevens</string>
@@ -36,6 +36,7 @@
     </string-array>
 
     <string name="title_activity_change_user_info">changeUserInfo</string>
+    <string name="title_activity_shoppingcart">Shoppingcart</string>
     <string name="save">Opslaan</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_register">Registreer</string>
@@ -48,5 +49,13 @@
     <string name="toShoppingCart">Winkelmandje</string>
     <string name="getPhotoByCode">Haal product op</string>
     <string name="getPhotoByCodeText">vul hier uw code in</string>
+    <string name="title_activity_collection">Collection</string>
+    <string name="title_activity_product_confirmation">Producten</string>
+
+    <string-array name="size_array">
+        <item>1024x768</item>
+        <item>1280x1024</item>
+        <item>1920x1080</item>
+    </string-array>
 
 </resources>

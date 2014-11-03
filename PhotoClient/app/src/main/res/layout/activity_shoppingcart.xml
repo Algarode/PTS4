@@ -1,146 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:orientation="horizontal"
-android:layout_height="match_parent"
-tools:context=".LoginActivity"
-android:background="@color/WhiteSmoke">
-
-<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_weight="5"
-    android:padding="10dp"
-    android:weightSum="1">
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:textSize="40dp"
-            android:layout_height="wrap_content"
-            android:text="Productnaam"
-            android:paddingLeft="15dp"
-            android:paddingRight="30dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:textSize="40dp"
-            android:layout_height="wrap_content"
-            android:text="Aantal"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:textSize="40dp"
-            android:text="prijs per stuk"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:textSize="40dp"
-            android:text="Totaal"/>
-    </LinearLayout>
-<ScrollView
-    android:layout_width="fill_parent"
-    android:layout_height="200dp"
-    android:id="@+id/Scroller">
-    <!--Header-->
-
-        <!--Example Item -->
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                />
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:id="@+id/IArticle"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+"
-                android:textSize="40dp" />
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:id="@+id/IThumb"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="58dp"
-                android:paddingRight="58dp"
-                />
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:id="@+id/sc_Aantal"
-                android:minWidth="50dp"
-                android:text="1"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="58dp"
-                android:paddingRight="58dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
-                android:textSize="40dp"
-                android:id="@+id/PrijspStuk"
-                android:text="1.00"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="58dp"
-                android:paddingRight="58dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
-                android:textSize="40dp"
-                android:id="@+id/TotaalItem"
-                android:text="1,00"
-                />
-            </LinearLayout>
-
-        </ScrollView>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-<TextView
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="right"
-    android:textSize="40dp"
-    android:text="TotaalPrijs: "/>
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:id="@+id/TotaalPrijs"
-        android:text="0,00"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp" />
-    </LinearLayout>
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:background="@color/WhiteSmoke">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listview_shop"
+        style="@style/ListView"></ListView>
+    </ScrollView>
 </LinearLayout>
-</LinearLayout>
-

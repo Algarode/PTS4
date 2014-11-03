@@ -88,7 +88,13 @@ public class LoginActivity extends Activity {
     }
 
     public void toRegister(View view){
-        Intent intent = new Intent(this, RegistrationActivity.class);
+        Intent intent = new Intent(this, DashboardActivity.class);
+        this.startActivity(intent);
+    }
+
+    public void skiplogin(View v)
+    {
+        Intent intent = new Intent(this, DashboardActivity.class);
         this.startActivity(intent);
     }
 }

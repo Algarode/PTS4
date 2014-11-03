@@ -78,7 +78,7 @@
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
                         android:textColor="@color/White"
-                        android:onClick="login"
+                        android:onClick="skiplogin"
                         android:id="@+id/login_submit"
                         android:text="@string/login_button" />
                 </TableRow>

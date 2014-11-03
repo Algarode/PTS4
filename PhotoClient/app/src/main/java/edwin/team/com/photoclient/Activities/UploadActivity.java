@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,7 +16,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -26,11 +30,13 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -111,11 +117,28 @@ public class UploadActivity extends Activity {
         {
             if(requestCode == SELECT_PICTURE)
             {
-
                 int clipCount = data.getClipData().getItemCount();
-
                 for(int i=0; i < clipCount; i++){
-                    files.add(new File(getRealPathFromURI(data.getClipData().getItemAt(i).getUri())));
+                    String path = getRealPathFromURI(data.getClipData().getItemAt(i).getUri());
+                    File f = new File(path);
+
+                    files.add(f);
+                    try {
+                        ImageView img = new ImageView(this);
+                        Bitmap bmp = BitmapFactory.decodeFile(path);
+
+                        img.setImageBitmap(bmp);
+                        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                                FrameLayout.LayoutParams.MATCH_PARENT,
+                                500);
+                        img.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                        img.setPadding(0,0,0,15);
+                        LinearLayout layout = (LinearLayout) findViewById(R.id.imageviewUpload);
+                        layout.addView(img, 0, params);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
@@ -146,7 +169,7 @@ public class UploadActivity extends Activity {
         map.put("files",files);
 
         String s = new UploadManager().execute(map).get();
-        if(!General.isResultGood(new JSONObject(s))){
+        if(!General.isResultGood(s)){
             //Hier nog wat doen
         }
     }

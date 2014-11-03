@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author rob
+ * @author Hafid
  */
 @Entity
 @Table(name = "order_line")
@@ -43,12 +43,12 @@ public class OrderLine implements Serializable {
     @NotNull
     @Column(name = "amount")
     private int amount;
+    @JoinColumn(name = "orderID", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Bestelling orderID;
     @JoinColumn(name = "sizeID", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Size1 sizeID;
-    @JoinColumn(name = "orderID", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Order1 orderID;
     @JoinColumn(name = "photoID", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Photo photoID;
@@ -81,20 +81,20 @@ public class OrderLine implements Serializable {
         this.amount = amount;
     }
 
+    public Bestelling getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(Bestelling orderID) {
+        this.orderID = orderID;
+    }
+
     public Size1 getSizeID() {
         return sizeID;
     }
 
     public void setSizeID(Size1 sizeID) {
         this.sizeID = sizeID;
-    }
-
-    public Order1 getOrderID() {
-        return orderID;
-    }
-
-    public void setOrderID(Order1 orderID) {
-        this.orderID = orderID;
     }
 
     public Photo getPhotoID() {

@@ -32,6 +32,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.accountmanagement.ChangeAccount.class);
         resources.add(com.generic.Auth.class);
+        resources.add(com.generic.CodeClaim.class);
         resources.add(com.generic.Register.class);
         resources.add(upload.UploadResource.class);
     }

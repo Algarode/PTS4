@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author rob
+ * @author Hafid
  */
 @Entity
 @Table(name = "account")
@@ -53,11 +53,11 @@ public class Account implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "password")
     private String password;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "accountId")
+    private User user;
     @JoinColumn(name = "roleID", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Roles roleID;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "accountId")
-    private User user;
 
     public Account() {
     }
@@ -96,20 +96,20 @@ public class Account implements Serializable {
         this.password = password;
     }
 
-    public Roles getRoleID() {
-        return roleID;
-    }
-
-    public void setRoleID(Roles roleID) {
-        this.roleID = roleID;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Roles getRoleID() {
+        return roleID;
+    }
+
+    public void setRoleID(Roles roleID) {
+        this.roleID = roleID;
     }
 
     @Override

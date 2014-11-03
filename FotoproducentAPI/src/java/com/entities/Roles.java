@@ -27,7 +27,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author rob
+ * @author Hafid
  */
 @Entity
 @Table(name = "roles")

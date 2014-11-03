@@ -27,7 +27,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author rob
+ * @author Hafid
  */
 @Entity
 @Table(name = "photo")
@@ -60,15 +60,15 @@ public class Photo implements Serializable {
     @NotNull
     @Column(name = "size")
     private int size;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "photoId")
+    private Collection<PhotoAlbum> photoAlbumCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "photoID")
     private Collection<OrderLine> orderLineCollection;
-    @OneToMany(mappedBy = "photoID")
-    private Collection<com.entities.Collection> collectionCollection;
     @JoinColumn(name = "photographer_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User photographerId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "photoId")
-    private Collection<PhotoShare> photoShareCollection;
+    @OneToMany(mappedBy = "photoID")
+    private Collection<com.entities.Collection> collectionCollection;
 
     public Photo() {
     }
@@ -118,22 +118,22 @@ public class Photo implements Serializable {
 
     @XmlTransient
     @JsonIgnore
+    public Collection<PhotoAlbum> getPhotoAlbumCollection() {
+        return photoAlbumCollection;
+    }
+
+    public void setPhotoAlbumCollection(Collection<PhotoAlbum> photoAlbumCollection) {
+        this.photoAlbumCollection = photoAlbumCollection;
+    }
+
+    @XmlTransient
+    @JsonIgnore
     public Collection<OrderLine> getOrderLineCollection() {
         return orderLineCollection;
     }
 
     public void setOrderLineCollection(Collection<OrderLine> orderLineCollection) {
         this.orderLineCollection = orderLineCollection;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<com.entities.Collection> getCollectionCollection() {
-        return collectionCollection;
-    }
-
-    public void setCollectionCollection(Collection<com.entities.Collection> collectionCollection) {
-        this.collectionCollection = collectionCollection;
     }
 
     public User getPhotographerId() {
@@ -146,12 +146,12 @@ public class Photo implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public Collection<PhotoShare> getPhotoShareCollection() {
-        return photoShareCollection;
+    public Collection<com.entities.Collection> getCollectionCollection() {
+        return collectionCollection;
     }
 
-    public void setPhotoShareCollection(Collection<PhotoShare> photoShareCollection) {
-        this.photoShareCollection = photoShareCollection;
+    public void setCollectionCollection(Collection<com.entities.Collection> collectionCollection) {
+        this.collectionCollection = collectionCollection;
     }
 
     @Override

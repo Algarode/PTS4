@@ -29,7 +29,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author rob
+ * @author Hafid
  */
 @Entity
 @Table(name = "user")
@@ -96,16 +96,16 @@ public class User implements Serializable {
     @Size(min = 1, max = 5)
     @Column(name = "country")
     private String country;
-    @OneToMany(mappedBy = "photographerID")
-    private Collection<Share> shareCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
-    private Collection<Order1> order1Collection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
-    private Collection<com.entities.Collection> collectionCollection;
+    private Collection<Bestelling> bestellingCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "photographerID")
     private Collection<SizePrize> sizePrizeCollection;
+    @OneToMany(mappedBy = "photographerID")
+    private Collection<Album> albumCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "photographerId")
     private Collection<Photo> photoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<com.entities.Collection> collectionCollection;
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @OneToOne(optional = false)
     private Account accountId;
@@ -211,32 +211,12 @@ public class User implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public Collection<Share> getShareCollection() {
-        return shareCollection;
+    public Collection<Bestelling> getBestellingCollection() {
+        return bestellingCollection;
     }
 
-    public void setShareCollection(Collection<Share> shareCollection) {
-        this.shareCollection = shareCollection;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<Order1> getOrder1Collection() {
-        return order1Collection;
-    }
-
-    public void setOrder1Collection(Collection<Order1> order1Collection) {
-        this.order1Collection = order1Collection;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<com.entities.Collection> getCollectionCollection() {
-        return collectionCollection;
-    }
-
-    public void setCollectionCollection(Collection<com.entities.Collection> collectionCollection) {
-        this.collectionCollection = collectionCollection;
+    public void setBestellingCollection(Collection<Bestelling> bestellingCollection) {
+        this.bestellingCollection = bestellingCollection;
     }
 
     @XmlTransient
@@ -251,12 +231,32 @@ public class User implements Serializable {
 
     @XmlTransient
     @JsonIgnore
+    public Collection<Album> getAlbumCollection() {
+        return albumCollection;
+    }
+
+    public void setAlbumCollection(Collection<Album> albumCollection) {
+        this.albumCollection = albumCollection;
+    }
+
+    @XmlTransient
+    @JsonIgnore
     public Collection<Photo> getPhotoCollection() {
         return photoCollection;
     }
 
     public void setPhotoCollection(Collection<Photo> photoCollection) {
         this.photoCollection = photoCollection;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<com.entities.Collection> getCollectionCollection() {
+        return collectionCollection;
+    }
+
+    public void setCollectionCollection(Collection<com.entities.Collection> collectionCollection) {
+        this.collectionCollection = collectionCollection;
     }
 
     public Account getAccountId() {

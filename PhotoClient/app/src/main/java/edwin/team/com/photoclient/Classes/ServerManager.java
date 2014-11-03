@@ -34,9 +34,9 @@ public class ServerManager extends AsyncTask<String,Void,String>{
         if(strings.length > 1){
             isjson = true;
             json = strings[0];
-            url = General.ipAdress+":"+General.port+"/FotoproducentAPI/api/"+strings[1];
+            url = General.FULLAPIPATH+strings[1];
         } else {
-            url = General.ipAdress+":"+General.port+"/FotoproducentAPI/api/"+strings[0];
+            url = General.FULLAPIPATH+strings[0];
         }
 
         Log.e("url", url);

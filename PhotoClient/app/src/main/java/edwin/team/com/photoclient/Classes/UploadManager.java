@@ -82,7 +82,6 @@ public class UploadManager extends AsyncTask<HashMap<String,Object>,Integer,Stri
                 fStream.close();
                 dataoutputstream.flush();
                 dataoutputstream.close();
-                //result  = httpcon.getResponseMessage();
                 BufferedReader r = new BufferedReader(new InputStreamReader(httpcon.getInputStream()));
                 StringBuilder total = new StringBuilder();
                 String line;
