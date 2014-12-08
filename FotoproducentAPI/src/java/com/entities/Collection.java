@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Hafid
+ * @author rob
  */
 @Entity
 @Table(name = "collection")
@@ -37,15 +37,15 @@ public class Collection implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "userID", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private User userID;
-    @JoinColumn(name = "photoID", referencedColumnName = "id")
-    @ManyToOne
-    private Photo photoID;
     @JoinColumn(name = "albumID", referencedColumnName = "id")
     @ManyToOne
     private Album albumID;
+    @JoinColumn(name = "photoID", referencedColumnName = "id")
+    @ManyToOne
+    private Photo photoID;
+    @JoinColumn(name = "userID", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private User userID;
 
     public Collection() {
     }
@@ -62,12 +62,12 @@ public class Collection implements Serializable {
         this.id = id;
     }
 
-    public User getUserID() {
-        return userID;
+    public Album getAlbumID() {
+        return albumID;
     }
 
-    public void setUserID(User userID) {
-        this.userID = userID;
+    public void setAlbumID(Album albumID) {
+        this.albumID = albumID;
     }
 
     public Photo getPhotoID() {
@@ -78,12 +78,12 @@ public class Collection implements Serializable {
         this.photoID = photoID;
     }
 
-    public Album getAlbumID() {
-        return albumID;
+    public User getUserID() {
+        return userID;
     }
 
-    public void setAlbumID(Album albumID) {
-        this.albumID = albumID;
+    public void setUserID(User userID) {
+        this.userID = userID;
     }
 
     @Override

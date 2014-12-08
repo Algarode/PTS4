@@ -61,14 +61,14 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Man"
+                        android:text="@string/rb_man"
                         android:id="@+id/rbMan"
                         android:textColor="@color/Black"/>
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Vrouw"
+                        android:text="@string/rb_woman"
                         android:id="@+id/rbVrouw"
                         android:textColor="@color/Black"/>
                 </RadioGroup>

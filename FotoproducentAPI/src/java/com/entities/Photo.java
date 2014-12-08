@@ -27,7 +27,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Hafid
+ * @author rob
  */
 @Entity
 @Table(name = "photo")
@@ -36,8 +36,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Photo.findAll", query = "SELECT p FROM Photo p"),
     @NamedQuery(name = "Photo.findById", query = "SELECT p FROM Photo p WHERE p.id = :id"),
     @NamedQuery(name = "Photo.findByName", query = "SELECT p FROM Photo p WHERE p.name = :name"),
-    @NamedQuery(name = "Photo.findByLocation", query = "SELECT p FROM Photo p WHERE p.location = :location"),
-    @NamedQuery(name = "Photo.findBySize", query = "SELECT p FROM Photo p WHERE p.size = :size")})
+    @NamedQuery(name = "Photo.findByLocation", query = "SELECT p FROM Photo p WHERE p.location = :location")})
 public class Photo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -56,19 +55,17 @@ public class Photo implements Serializable {
     @Size(min = 1, max = 120)
     @Column(name = "location")
     private String location;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "size")
-    private int size;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "photoId")
-    private Collection<PhotoAlbum> photoAlbumCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "photoID")
+    @OneToMany(mappedBy = "photoID")
     private Collection<OrderLine> orderLineCollection;
+    @OneToMany(mappedBy = "photoID")
+    private Collection<com.entities.Collection> collectionCollection;
     @JoinColumn(name = "photographer_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User photographerId;
-    @OneToMany(mappedBy = "photoID")
-    private Collection<com.entities.Collection> collectionCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "photoID")
+    private Collection<ProductPhoto> productPhotoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "photoId")
+    private Collection<PhotoAlbum> photoAlbumCollection;
 
     public Photo() {
     }
@@ -77,11 +74,10 @@ public class Photo implements Serializable {
         this.id = id;
     }
 
-    public Photo(String id, String name, String location, int size) {
+    public Photo(String id, String name, String location) {
         this.id = id;
         this.name = name;
         this.location = location;
-        this.size = size;
     }
 
     public String getId() {
@@ -108,24 +104,6 @@ public class Photo implements Serializable {
         this.location = location;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<PhotoAlbum> getPhotoAlbumCollection() {
-        return photoAlbumCollection;
-    }
-
-    public void setPhotoAlbumCollection(Collection<PhotoAlbum> photoAlbumCollection) {
-        this.photoAlbumCollection = photoAlbumCollection;
-    }
-
     @XmlTransient
     @JsonIgnore
     public Collection<OrderLine> getOrderLineCollection() {
@@ -134,6 +112,16 @@ public class Photo implements Serializable {
 
     public void setOrderLineCollection(Collection<OrderLine> orderLineCollection) {
         this.orderLineCollection = orderLineCollection;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<com.entities.Collection> getCollectionCollection() {
+        return collectionCollection;
+    }
+
+    public void setCollectionCollection(Collection<com.entities.Collection> collectionCollection) {
+        this.collectionCollection = collectionCollection;
     }
 
     public User getPhotographerId() {
@@ -146,12 +134,22 @@ public class Photo implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public Collection<com.entities.Collection> getCollectionCollection() {
-        return collectionCollection;
+    public Collection<ProductPhoto> getProductPhotoCollection() {
+        return productPhotoCollection;
     }
 
-    public void setCollectionCollection(Collection<com.entities.Collection> collectionCollection) {
-        this.collectionCollection = collectionCollection;
+    public void setProductPhotoCollection(Collection<ProductPhoto> productPhotoCollection) {
+        this.productPhotoCollection = productPhotoCollection;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<PhotoAlbum> getPhotoAlbumCollection() {
+        return photoAlbumCollection;
+    }
+
+    public void setPhotoAlbumCollection(Collection<PhotoAlbum> photoAlbumCollection) {
+        this.photoAlbumCollection = photoAlbumCollection;
     }
 
     @Override

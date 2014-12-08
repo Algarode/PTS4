@@ -1,35 +1,64 @@
 package edwin.team.com.photoclient.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Spinner;
 
+import java.util.ArrayList;
+
+import edwin.team.com.photoclient.Classes.AppController;
+import edwin.team.com.photoclient.Classes.BitmapByteArrayConversion;
+import edwin.team.com.photoclient.Classes.ImageCollection;
 import edwin.team.com.photoclient.R;
 
 public class ProductConfirmationActivity extends Activity {
 
     private ListView listView;
-    public static ArrayAdapter<CharSequence> adapter;
+    private Button submit;
+    private ArrayList<ImageCollection> imageCollectionList;
+    private ProductConfirmationAdapter adapter;
+    private BitmapByteArrayConversion bbac = new BitmapByteArrayConversion();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_confirmation);
+        Intent activityThatCalled = getIntent();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
-        Spinner spinner = (Spinner) findViewById(R.id.spinnerSizes);
-        adapter = ArrayAdapter.createFromResource(this, R.array.size_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        listView = (ListView) findViewById(R.id.listViewProducts);
-
-
+        this.imageCollectionList = (ArrayList<ImageCollection>)activityThatCalled.getSerializableExtra("collection");
+        this.listView = (ListView)findViewById(R.id.listViewProducts);
+        this.submit = (Button)findViewById(R.id.bt_add_shopping_cart);
+        this.updateListview();
     }
 
+    private void updateListview(){
+        this.adapter = new ProductConfirmationAdapter(this,this.imageCollectionList);
+        this.listView.setAdapter(
+                this.adapter
+        );
+    }
 
+    public void changePrice(int pos,int sizeID){
+        ImageCollection col = this.imageCollectionList.get(pos);
+        col.setSize(sizeID);
+        updateListview();
+    }
+
+    public void changeAmount(int pos, int amount){
+        ImageCollection col = this.imageCollectionList.get(pos);
+        col.setAmount(amount);
+        updateListview();
+    }
+
+    public void addToShoppingCart(View view) {
+        if(imageCollectionList.size() > 0){
+            for(ImageCollection col : imageCollectionList){
+                AppController.getShoppingCart().addOrderLine(col.getId(),col.getPrice(),col.getSizePriceID(),col.getAmount(),bbac.toBitmap(col.getImageByte()),col.getSizeName());
+            }
+        }
+    }
 }

@@ -14,12 +14,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+// DEPRECATED!! USE VolleyHelper instead
 public class ServerManager extends AsyncTask<String,Void,String>{
-
-    @Override
-    protected void onPreExecute() {
-        Log.e("checkpoint", "cp1");
-    }
 
     @Override
     protected void onPostExecute(String s) {
@@ -50,7 +46,6 @@ public class ServerManager extends AsyncTask<String,Void,String>{
 
                 input.setContentType("application/json");
                 post.setEntity(input);
-                Log.e("checkpoint", input.toString());
             }
 
 

@@ -5,57 +5,111 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="login_button">Login</string>
-    <string name="login_password">Wachtwoord</string>
+    <string name="login_password">Password</string>
     <string name="login_email">Email</string>
-    <string name="login_login">Inloggen</string>
+    <string name="login_login">Login</string>
     <string name="email_nl">Email</string>
     <string name="to_be_uploaded_imageview">contains the to be uploaded image</string>
     <string name="upload_title">Upload image</string>
     <string name="textview_image_name">Unique id:</string>
     <string name="title_activity_dashboard">Dashboard</string>
     <string name="title_section1">Dashboard</string>
-    <string name="title_section2">Wijzig gegevens</string>
+    <string name="title_section2">Change info</string>
     <string name="title_section3">Upload</string>
+    <string name="title_section4">Combine product en photo</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
-    <string name="name">Naam</string>
-    <string name="tussenvoegsel">Tussenvoegsel</string>
-    <string name="lastName">Achternaam</string>
-    <string name="Street">Straat</string>
-    <string name="houseNumber">Huisnummer</string>
-    <string name="zipcode">Postcode</string>
-    <string name="City">Stad</string>
-    <string name="ifFotograaaf">Fotograaf</string>
-    <string name="register_button">Nog geen account? registreer hier</string>
-    <string name="register">Registreer</string>
-
-    <string-array name="land_array">
-        <item>NL</item>
-        <item>BE</item>
-    </string-array>
-
+    <string name="name">Name</string>
+    <string name="tussenvoegsel">Addition</string>
+    <string name="lastName">Last name</string>
+    <string name="Street">Street</string>
+    <string name="houseNumber">House number</string>
+    <string name="zipcode">Postal code</string>
+    <string name="City">City</string>
+    <string name="ifFotograaaf">Photographer</string>
+    <string name="register_button">Don\'t have a account yet? register here</string>
+    <string name="register">Register</string>
     <string name="title_activity_change_user_info">changeUserInfo</string>
     <string name="title_activity_shoppingcart">Shoppingcart</string>
-    <string name="save">Opslaan</string>
+    <string name="save">Save</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="login_register">Registreer</string>
-    <string name="login_failureTitle">Login mislukt</string>
-    <string name="login_wrongCred">verkeerde gebruikers naam en of wachtwoord</string>
-    <string name="connectionError">Kon geen verbinding maken</string>
+    <string name="login_register">Register</string>
+    <string name="login_failureTitle">Login Failed</string>
+    <string name="login_wrongCred">Wrong username and/or password</string>
+    <string name="connectionError">Could not make connection</string>
     <string name="Update">Update</string>
-    <string name="upload_bt_select">Select image</string>
+    <string name="upload_bt_select">Select images</string>
     <string name="upload_bt_upload">Upload</string>
-    <string name="toShoppingCart">Winkelmandje</string>
-    <string name="getPhotoByCode">Haal product op</string>
-    <string name="getPhotoByCodeText">vul hier uw code in</string>
+    <string name="toShoppingCart">Shoppingcart</string>
+    <string name="getPhotoByCode">Get product</string>
+    <string name="getPhotoByCodeText">Enter your code here</string>
     <string name="title_activity_collection">Collection</string>
-    <string name="title_activity_product_confirmation">Producten</string>
+    <string name="title_activity_product_confirmation">Products</string>
+    <string name="activity_collection_confirm_button">Confirm</string>
+    <string name="add_to_shoppingcart_dashboard">Add to shoppingcart</string>
+    <string name="get_photo_dashboard">get photo</string>
+    <string name="retrieve_dashboard">retrieve</string>
+    <string name="login_username">Username</string>
+    <string name="password_login">Password</string>
+    <string name="add_to_shoppingcart_product_confirm">Add to shoppingcart</string>
+    <string name="rb_man">Man</string>
+    <string name="rb_woman">Woman</string>
+    <string name="shopping_cart">Shoppingcart</string>
+    <string name="measure">Measure</string>
+    <string name="amount">Amount</string>
+    <string name="piece_price">Piece price</string>
+    <string name="total_price">Total price</string>
+    <string name="place_order">Place order</string>
+    <string name="sub_total">Sub Total</string>
+    <string name="tax">Tax</string>
+    <string name="total">Total</string>
+    <string name="select_picture">Select Picture</string>
+    <string name="uploading_succeeded">Uploading succeeded</string>
+    <string name="error_uploading">Error uploading \n Try again later..</string>
+    <string name="select_images_first">Select your images first</string>
+    <string name="submitting_order_please_hold">Submitting your order please wait...</string>
+    <string name="order_saved">Order saved, You can continue shopping</string>
+    <string name="order_saved_failed">Saving failed, make sure all amount fields are set</string>
+    <string name="volley_error">An error occurred with the server please try again later</string>
+    <string name="reach_server_error">Could not contact the server</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="registration_failed">Registration failed due to a incorrect input</string>
+    <string name="account_being_saved">Your account is being saved please hold..</string>
+    <string name="invalid_city">City entered is invalid</string>
+    <string name="invalid_postal">Invalid postal code entered</string>
+    <string name="invalid_housenr">Invalid house number entered</string>
+    <string name="invalid_street">Invalid street entered</string>
+    <string name="sex_selected">No gender selected</string>
+    <string name="invalid_lastname">Invalid last name entered</string>
+    <string name="invalid_middlename">Invalid middle name entered</string>
+    <string name="invalid_email">Invalid email entered</string>
+    <string name="some_fields_empty">Some fields have not been entered</string>
+    <string name="invalid_name">Invalid name entered</string>
+    <string name="login_error">Provided login credentials are incorrect please try again</string>
+    <string name="verifying_login">Verifying login credentials please wait...</string>
+    <string name="enter_password">Please enter a password</string>
+    <string name="enter_email">Please enter an email address</string>
+    <string name="claiming_code">Claiming code, please wait...</string>
+    <string name="content_added">Picture or collection was added to your personal collection</string>
+    <string name="code_invalid">Invalid code entered, Check for small and capital letters</string>
+    <string name="processing_images">Processing images, please wait</string>
+    <string name="no_photos_selected">No photo have been selected</string>
+    <string name="fetching_data">Fetching data...</string>
+    <string name="next">Next</string>
+
 
     <string-array name="size_array">
         <item>1024x768</item>
         <item>1280x1024</item>
         <item>1920x1080</item>
+    </string-array>
+
+    <string-array name="land_array">
+        <item>NL</item>
+        <item>BE</item>
     </string-array>
 
 </resources>

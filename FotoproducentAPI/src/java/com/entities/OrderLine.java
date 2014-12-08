@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Hafid
+ * @author rob
  */
 @Entity
 @Table(name = "order_line")
@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "OrderLine.findAll", query = "SELECT o FROM OrderLine o"),
     @NamedQuery(name = "OrderLine.findById", query = "SELECT o FROM OrderLine o WHERE o.id = :id"),
+    @NamedQuery(name = "OrderLine.findByProductPhotoId", query = "SELECT o FROM OrderLine o WHERE o.productPhotoId = :productPhotoId"),
     @NamedQuery(name = "OrderLine.findByAmount", query = "SELECT o FROM OrderLine o WHERE o.amount = :amount")})
 public class OrderLine implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -39,19 +40,21 @@ public class OrderLine implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Column(name = "product_photo_id")
+    private Integer productPhotoId;
     @Basic(optional = false)
     @NotNull
     @Column(name = "amount")
     private int amount;
+    @JoinColumn(name = "sizeID", referencedColumnName = "id")
+    @ManyToOne
+    private SizePrize sizeID;
+    @JoinColumn(name = "photoID", referencedColumnName = "id")
+    @ManyToOne
+    private Photo photoID;
     @JoinColumn(name = "orderID", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Bestelling orderID;
-    @JoinColumn(name = "sizeID", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Size1 sizeID;
-    @JoinColumn(name = "photoID", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Photo photoID;
 
     public OrderLine() {
     }
@@ -73,6 +76,14 @@ public class OrderLine implements Serializable {
         this.id = id;
     }
 
+    public Integer getProductPhotoId() {
+        return productPhotoId;
+    }
+
+    public void setProductPhotoId(Integer productPhotoId) {
+        this.productPhotoId = productPhotoId;
+    }
+
     public int getAmount() {
         return amount;
     }
@@ -81,19 +92,11 @@ public class OrderLine implements Serializable {
         this.amount = amount;
     }
 
-    public Bestelling getOrderID() {
-        return orderID;
-    }
-
-    public void setOrderID(Bestelling orderID) {
-        this.orderID = orderID;
-    }
-
-    public Size1 getSizeID() {
+    public SizePrize getSizeID() {
         return sizeID;
     }
 
-    public void setSizeID(Size1 sizeID) {
+    public void setSizeID(SizePrize sizeID) {
         this.sizeID = sizeID;
     }
 
@@ -103,6 +106,14 @@ public class OrderLine implements Serializable {
 
     public void setPhotoID(Photo photoID) {
         this.photoID = photoID;
+    }
+
+    public Bestelling getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(Bestelling orderID) {
+        this.orderID = orderID;
     }
 
     @Override

@@ -3,6 +3,7 @@
 <sun-web-app error-url="">
   <class-loader delegate="true"/>
   <jsp-config>
+    <property name="alternatedocroot_1" value="from=/imageloc/* dir=/_photos" /> 
     <property name="keepgenerated" value="true">
       <description>Keep a copy of the generated servlet class' java code.</description>
     </property>

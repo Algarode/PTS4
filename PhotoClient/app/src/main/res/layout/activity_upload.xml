@@ -5,68 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
     android:background="@color/WhiteSmoke">
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_weight="5"
-    android:padding="10dp">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/upload_title"
-        android:textColor="@color/MainTextColor"
-        android:textSize="30sp"
-        android:gravity="center_horizontal"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/MainTextColor"
-        android:textSize="30sp"
-        android:text="@string/textview_image_name"
-        android:layout_marginTop="80dp"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/MainTextColor"
-        android:textSize="30sp"
-        android:padding="10dp"
-        android:singleLine="true"
-        android:id="@+id/etName"
-        android:background="@drawable/edittext_border"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:padding="25dp"
-        android:background="@drawable/actionbar_background"
-        android:textColor="@color/White"
-        android:text="@string/upload_bt_select"
-        android:textSize="30sp"
-        android:onClick="selectImage"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:padding="25dp"
-        android:background="@drawable/inactive_button"
-        android:textColor="@color/White"
-        android:text="@string/upload_bt_upload"
-        android:clickable="false"
-        android:textSize="30sp"
-        android:id="@+id/upload_button"
-        android:onClick="upload" />
-</LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_weight="5"
-            android:padding="10dp">
+            android:layout_weight="1000"
+            android:padding="10dp"
+            android:id="@+id/uploadimageoverivew">
             <ScrollView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
@@ -80,5 +25,33 @@
                     </LinearLayout>
             </ScrollView>
         </LinearLayout >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="5"
+        android:padding="10dp">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/upload"
+            android:id="@+id/upload_button"
+            android:onClick="upload"
+            android:layout_gravity="center_horizontal"
+            android:textSize="35dp"
+            android:layout_marginTop="20dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:padding="25dp"
+            android:background="@drawable/actionbar_background"
+            android:textColor="@color/White"
+            android:text="@string/upload_bt_select"
+            android:textSize="30sp"
+            android:onClick="selectImage"
+            />
+    </LinearLayout>
 </LinearLayout>
 

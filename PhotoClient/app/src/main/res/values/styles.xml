@@ -5,10 +5,8 @@
 		<item name="android:typeface">sans</item>
 	</style>
 	<style name="ListView" parent="@android:style/Widget.ListView">
-		<item name="android:background">@color/LightSkyBlue</item>
+		<item name="android:background">@color/ShoppingCartBackground</item>
 		<item name="android:cacheColorHint">@android:color/transparent</item>
-		<item name="android:divider">@android:color/transparent</item>
-		<item name="android:dividerHeight">0dp</item>
 	</style>
 <style name="addToCartButton">
 		<item name="android:background">#9ACD32</item>

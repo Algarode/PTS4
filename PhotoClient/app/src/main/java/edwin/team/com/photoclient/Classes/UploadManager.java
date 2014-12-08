@@ -1,5 +1,7 @@
 package edwin.team.com.photoclient.Classes;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.RecoverySystem;
 import android.util.Log;
@@ -18,10 +20,12 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import edwin.team.com.photoclient.Activities.UploadActivity;
+
 /**
  * Created by Hafid on 14-10-2014.
  */
-public class UploadManager extends AsyncTask<HashMap<String,Object>,Integer,String> {
+public class UploadManager extends AsyncTask<ArrayList<File>,Integer,String> {
 
     private static final String LINE_FEED = "\r\n";
     final String boundary = "*****"+Long.toString(System.currentTimeMillis())+"*****";
@@ -29,6 +33,37 @@ public class UploadManager extends AsyncTask<HashMap<String,Object>,Integer,Stri
     DataOutputStream dataoutputstream;
     FileInputStream fStream;
     int totalSize;
+    private final ProgressDialog dialog;
+    Activity activity;
+
+    private OnTaskExecutionFinished _task_finished_event;
+
+    public interface OnTaskExecutionFinished
+    {
+        public void OnTaskFinishedEvent(String Reslut);
+    }
+
+    public void setOnTaskFinishedEvent(OnTaskExecutionFinished _event)
+    {
+        if(_event != null)
+        {
+            this._task_finished_event = _event;
+        }
+    }
+
+    public UploadManager(Activity activity){
+        this.activity = activity;
+        dialog = new ProgressDialog(activity);
+    }
+
+
+    @Override
+    protected  void onPreExecute(){
+        this.dialog.setMessage("Uploading...");
+        this.dialog.setCancelable(false);
+        this.dialog.show();
+    }
+
 
     @Override
     protected void onProgressUpdate(Integer... values){
@@ -36,15 +71,20 @@ public class UploadManager extends AsyncTask<HashMap<String,Object>,Integer,Stri
     }
 
     @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
+    protected void onPostExecute(String result) {
+        if (dialog.isShowing()) {
+            dialog.dismiss();
+            if(this._task_finished_event != null)
+            {
+                this._task_finished_event.OnTaskFinishedEvent(result);
+            }
+        }
     }
 
     @Override
-    protected String doInBackground(HashMap<String, Object>... params) {
+    protected String doInBackground(ArrayList<File>... params) {
         String result = "";
         if(params != null){
-            HashMap<String, Object> map = params[0];
             try {
                 URL url = new URL(General.FULLAPIPATH+"upload/uploadImage");
                 HttpURLConnection httpcon = (HttpURLConnection)url.openConnection();
@@ -66,12 +106,10 @@ public class UploadManager extends AsyncTask<HashMap<String,Object>,Integer,Stri
                 httpcon.setRequestProperty("Content-Type","multipart/form-data;boundary="+boundary);
                 dataoutputstream = new DataOutputStream(httpcon.getOutputStream());
                 dataoutputstream.writeBytes(twoHyphens + boundary + LINE_FEED);
-                dataoutputstream.writeBytes("Content-Disposition: form-data; name=\"token\""+LINE_FEED+LINE_FEED+map.get("token")+LINE_FEED);
-                dataoutputstream.writeBytes(twoHyphens + boundary + LINE_FEED);
                 dataoutputstream.writeBytes("Content-Disposition: form-data; name=\"user\""+LINE_FEED+LINE_FEED+ General.USERID+LINE_FEED); //General.userID
                 dataoutputstream.writeBytes(twoHyphens + boundary + LINE_FEED);
 
-                ArrayList<File> files = (ArrayList<File>)map.get("files");
+                ArrayList<File> files = params[0];
 
                 for(File f : files){
                     addFilePart(f);

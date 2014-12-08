@@ -32,9 +32,11 @@ public class Auth {
         if (ac != null){
             result.put("result", true);
             result.put("userID", ac.getId());
-            result.put("role",ac.getRoleID());
+            Roles role = ac.getRoleID();
+            result.put("role",role.getId());
         } else {
             result.put("result", "false"); 
+            Product pr = new Product();
         }
 
         return result.toString();

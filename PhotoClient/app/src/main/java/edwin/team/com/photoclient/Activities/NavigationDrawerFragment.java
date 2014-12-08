@@ -107,6 +107,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_section1),
                         getString(R.string.title_section2),
                         getString(R.string.title_section3),
+                        getString(R.string.title_section4),
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
@@ -201,6 +202,9 @@ public class NavigationDrawerFragment extends Fragment {
                     break;
                 case 2:
                     intent = new Intent(getActivity(),UploadActivity.class);
+                    break;
+                case 3:
+                    intent = new Intent(getActivity(), PickProductActivity.class);
                     break;
             }
             if(intent != null){

@@ -27,7 +27,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Hafid
+ * @author rob
  */
 @Entity
 @Table(name = "album")
@@ -49,13 +49,13 @@ public class Album implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "naam")
     private String naam;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "albumId")
-    private Collection<PhotoAlbum> photoAlbumCollection;
     @JoinColumn(name = "photographerID", referencedColumnName = "id")
     @ManyToOne
     private User photographerID;
     @OneToMany(mappedBy = "albumID")
     private Collection<com.entities.Collection> collectionCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "albumId")
+    private Collection<PhotoAlbum> photoAlbumCollection;
 
     public Album() {
     }
@@ -85,16 +85,6 @@ public class Album implements Serializable {
         this.naam = naam;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<PhotoAlbum> getPhotoAlbumCollection() {
-        return photoAlbumCollection;
-    }
-
-    public void setPhotoAlbumCollection(Collection<PhotoAlbum> photoAlbumCollection) {
-        this.photoAlbumCollection = photoAlbumCollection;
-    }
-
     public User getPhotographerID() {
         return photographerID;
     }
@@ -111,6 +101,16 @@ public class Album implements Serializable {
 
     public void setCollectionCollection(Collection<com.entities.Collection> collectionCollection) {
         this.collectionCollection = collectionCollection;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<PhotoAlbum> getPhotoAlbumCollection() {
+        return photoAlbumCollection;
+    }
+
+    public void setPhotoAlbumCollection(Collection<PhotoAlbum> photoAlbumCollection) {
+        this.photoAlbumCollection = photoAlbumCollection;
     }
 
     @Override

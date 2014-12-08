@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PhotoClient</string>
+    <string name="hello_world">Hallo wereld!</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="login_button">Login</string>
+    <string name="login_password">Wachtwoord</string>
+    <string name="login_email">Emailadres</string>
+    <string name="login_login">Login</string>
+    <string name="email_nl">Emailadres</string>
+    <string name="to_be_uploaded_imageview">Bevat de afbeelding die geüpload wordt</string>
+    <string name="upload_title">Afbeelding uploaden</string>
+    <string name="textview_image_name">Uniek nummer</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_section1">Dashboard</string>
+    <string name="title_section2">Wijzig gegevens</string>
+    <string name="title_section3">Upload</string>
+    <string name="title_section4">Combineer product en foto</string>
+    <string name="navigation_drawer_open">Open navigatie menu</string>
+    <string name="navigation_drawer_close">Sluit navigatie menu</string>
+    <string name="action_example">Voorbeeld functie</string>
+    <string name="name">Naam</string>
+    <string name="tussenvoegsel">Tussenvoegsel</string>
+    <string name="lastName">Achternaam</string>
+    <string name="Street">Straat</string>
+    <string name="houseNumber">Huisnummer</string>
+    <string name="zipcode">Postcode</string>
+    <string name="City">Stad</string>
+    <string name="ifFotograaaf">Fotograaf</string>
+    <string name="register_button">Heb je nog geen account? Registreer hier!</string>
+    <string name="register">Registreer</string>
+    <string name="title_activity_change_user_info">Wijzig account informatie</string>
+    <string name="title_activity_shoppingcart">Winkelwagen</string>
+    <string name="save">Opslaan</string>
+    <string name="hello_blank_fragment">Hallo blanke fragment</string>
+    <string name="login_register">Registreer</string>
+    <string name="login_failureTitle">Inloggen mislukt</string>
+    <string name="login_wrongCred">Verkeerde gebruikersnaam en/of wachtwoord</string>
+    <string name="connectionError">Kon geen verbinding maken</string>
+    <string name="Update">Update</string>
+    <string name="upload_bt_select">Selecteer afbeeldingen</string>
+    <string name="upload_bt_upload">Upload</string>
+    <string name="toShoppingCart">Winkelwagen</string>
+    <string name="getPhotoByCode">Haal product op</string>
+    <string name="getPhotoByCodeText">Voer je code in</string>
+    <string name="title_activity_collection">Collectie</string>
+    <string name="title_activity_product_confirmation">Producten</string>
+    <string name="activity_collection_confirm_button">Bevestigen</string>
+    <string name="add_to_shoppingcart_dashboard">Voeg toe aan winkelwagen</string>
+    <string name="get_photo_dashboard">Haal foto op</string>
+    <string name="retrieve_dashboard">Haal op</string>
+    <string name="login_username">Email</string>
+    <string name="password_login">Wachtwoord</string>
+    <string name="add_to_shoppingcart_product_confirm">Voeg toe aan winkelwagen</string>
+    <string name="rb_man">Man</string>
+    <string name="rb_woman">Vrouw</string>
+    <string name="shopping_cart">Winkelwagen</string>
+    <string name="measure">Afmeting</string>
+    <string name="amount">Aantal</string>
+    <string name="piece_price">Stukprijs</string>
+    <string name="total_price">Totaalprijs</string>
+    <string name="place_order">Plaats order</string>
+    <string name="sub_total">Subtotaal</string>
+    <string name="tax">BTW</string>
+    <string name="total">Totaal</string>
+    <string name="select_picture">Selecteer afbeelding</string>
+    <string name="uploading_succeeded">Uploaden voltooid</string>
+    <string name="error_uploading">Error tijdens het uploaden \n Probeer het later nog eens..</string>
+    <string name="select_images_first">Selecteer eerst je afbeeldingen</string>
+    <string name="submitting_order_please_hold">Je order wordt opgeslagen een ogenblik geduld a.u.b.</string>
+    <string name="order_saved">Order opgeslagen, je kunt verdergaan met winkelen</string>
+    <string name="order_saved_failed">Opslaan mislukt, zorg ervoor dat alle aantal velden gevuld zijn</string>
+    <string name="volley_error">An error occurred with the server please try again later</string>
+    <string name="reach_server_error">Kon geen verbinding maken met de server</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
+    <string name="are_you_sure">Weet je het zeker?</string>
+    <string name="registration_failed">Registratie mislukt door verkeerd ingevoerde informatie</string>
+    <string name="account_being_saved">Je account word opgeslagen een ogenblik geduld a.u.b.</string>
+    <string name="invalid_city">Ongeldige stad ingevoerd</string>
+    <string name="invalid_postal">Ongeldige postcode ingevoerd</string>
+    <string name="invalid_housenr">Ongeldig huisnummer ingevoerd</string>
+    <string name="invalid_street">Ongeldige straat ingevoerd</string>
+    <string name="sex_selected">Geen geslacht geselecteerd</string>
+    <string name="invalid_lastname">Ongeldige achternaam ingevoerd</string>
+    <string name="invalid_middlename">Ongeldig tussenvoegsel ingevoerd</string>
+    <string name="invalid_email">Ongeldig emailadres ingevoerd</string>
+    <string name="some_fields_empty">Sommige velden zijn niet ingevoerd</string>
+    <string name="invalid_name">Ongeldige naam ingevoerd</string>
+    <string name="login_error">Opgegeven logingegevens zijn incorrect, probeer het nogmaals</string>
+    <string name="verifying_login">Je logingegevens worden geverifiëerd een ogenblik geduld a.u.b.</string>
+    <string name="enter_password">Voer a.u.b. een wachtwoord in</string>
+    <string name="enter_email">Voer a.u.b. een emailadres in</string>
+    <string name="claiming_code">Je code wordt geverifiëerd een ogenblik geduld a.u.b.</string>
+    <string name="content_added">De foto of het album is toegevoegd aan je collectie</string>
+    <string name="code_invalid">Ongeldige code ingevoerd, Let goed op hoofdletters en kleine letters</string>
+    <string name="processing_images">Afbeeldingen worden verwerkt, een moment geduld a.u.b.</string>
+    <string name="no_photos_selected">Er zijn geen foto\'s geselecteerd</string>
+    <string name="fetching_data">Data wordt opgehaald...</string>
+    <string name="next">Volgende</string>
+
+
+    <string-array name="size_array">
+        <item>1024x768</item>
+        <item>1280x1024</item>
+        <item>1920x1080</item>
+    </string-array>
+
+    <string-array name="land_array">
+        <item>NL</item>
+        <item>BE</item>
+    </string-array>
+
+</resources>

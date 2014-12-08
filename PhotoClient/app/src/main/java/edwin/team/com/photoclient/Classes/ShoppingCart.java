@@ -1,6 +1,6 @@
 package edwin.team.com.photoclient.Classes;
 
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,11 +10,11 @@ import java.util.List;
 public class ShoppingCart implements Serializable {
 
     // Key = photoID
-    private HashMap<Integer,OrderLine> orders;
+    private HashMap<String,OrderLine> orders;
     private Double tax, totalPriceExTax = 0.00;
 
     public ShoppingCart(){
-        this.orders = new HashMap<Integer, OrderLine>();
+        this.orders = new HashMap<String, OrderLine>();
     }
 
     public Double getTotalPriceExTax(){
@@ -34,7 +34,7 @@ public class ShoppingCart implements Serializable {
         this.tax = (totalPriceExTax * 1.19) - totalPriceExTax; //Btw moet van server worden opgehaald
     }
 
-    public void changeAmount(Integer photoID, Integer amount){
+    public void changeAmount(String photoID, Integer amount){
         OrderLine order = orders.get(photoID);
         this.totalPriceExTax -= order.getTotalPrice();
         order.setAmount(amount);
@@ -45,12 +45,12 @@ public class ShoppingCart implements Serializable {
         //hier moeten we nog even overleggen hoe we de kosten van een size op gaan halen. a.s. dinsdag zullen we dit doen
     }
 
-    public void addOrderLine(Integer photoID, Double price, Integer sizeID, Integer amount, Drawable image, String name){
+    public void addOrderLine(String photoID, Double price, Integer sizeID, Integer amount, Bitmap image, String name){
         this.orders.put(photoID,new OrderLine(photoID,price,sizeID,amount, image, name));
         this.totalPriceExTax += (price * amount);
     }
 
-    public void deleteOrderLine(Integer photoID){
+    public void deleteOrderLine(String photoID){
         OrderLine order = orders.get(photoID);
         this.totalPriceExTax -= order.getTotalPrice();
         orders.remove(photoID);
@@ -60,4 +60,10 @@ public class ShoppingCart implements Serializable {
         return new ArrayList<OrderLine>(orders.values());
     }
 
+    public void emptyShoppingCart(){
+        this.orders.clear();
+        this.totalPriceExTax = 0.00;
+        this.tax = 0.00;
+
+    }
 }

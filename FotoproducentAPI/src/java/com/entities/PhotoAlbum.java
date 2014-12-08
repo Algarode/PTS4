@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Hafid
+ * @author rob
  */
 @Entity
 @Table(name = "photo_album")
@@ -37,12 +37,12 @@ public class PhotoAlbum implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "photo_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Photo photoId;
     @JoinColumn(name = "album_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Album albumId;
+    @JoinColumn(name = "photo_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Photo photoId;
 
     public PhotoAlbum() {
     }
@@ -59,20 +59,20 @@ public class PhotoAlbum implements Serializable {
         this.id = id;
     }
 
-    public Photo getPhotoId() {
-        return photoId;
-    }
-
-    public void setPhotoId(Photo photoId) {
-        this.photoId = photoId;
-    }
-
     public Album getAlbumId() {
         return albumId;
     }
 
     public void setAlbumId(Album albumId) {
         this.albumId = albumId;
+    }
+
+    public Photo getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(Photo photoId) {
+        this.photoId = photoId;
     }
 
     @Override

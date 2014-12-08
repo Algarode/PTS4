@@ -1,25 +1,32 @@
 package edwin.team.com.photoclient.Activities;
 
-import android.app.Activity;
-
 import android.app.ActionBar;
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.DialogInterface;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import edwin.team.com.photoclient.Classes.ServerManager;
+import edwin.team.com.photoclient.Classes.AppController;
+import edwin.team.com.photoclient.Classes.General;
+import edwin.team.com.photoclient.Classes.VolleyHelper;
 import edwin.team.com.photoclient.R;
 
 
@@ -30,6 +37,8 @@ public class DashboardActivity extends Activity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
+   private VolleyHelper volleyHelper = null;
+    private ProgressDialog pDialog;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -45,6 +54,7 @@ public class DashboardActivity extends Activity
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
+        this.volleyHelper = AppController.getVolleyHelper();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -109,6 +119,11 @@ public class DashboardActivity extends Activity
         return super.onOptionsItemSelected(item);
     }
 
+    public void testImageCollectionPage(View view) {
+        Intent intent = new Intent(this, CollectionActivity.class);
+        this.startActivity(intent);
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -151,18 +166,47 @@ public class DashboardActivity extends Activity
     }
 //dashboard item handling
 
-/*
     public void getPhoto(View view) throws JSONException {
-        //Todo real url, and rest of data handling
         EditText code = (EditText) findViewById(R.id.UniekeCodeCash);
-        JSONObject json = new JSONObject();
-        json.put("UniekeCode", code.getText());
-        String data = "";
-        try {
-            data = new ServerManager().execute(json.toString(), "generic/claimCode").get();
-        } catch (Exception ex){
+        //code.setText("p_g6x3rlb5k");
+        if(!code.getText().equals("")){
+            if(General.reachHost() && this.volleyHelper != null) {
+                pDialog.setMessage(String.valueOf(R.string.claiming_code));
+                JSONObject json = new JSONObject();
+                json.put("code", code.getText());
+                json.put("uid", General.USERID);
+                    Response.Listener<JSONObject> volleyListener = new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.e("Claim code", response.toString());
+                            Boolean result = response.optBoolean("result");
+                            pDialog.hide();
+                            if(result){
+                                Toast.makeText(getApplicationContext(),R.string.content_added,Toast.LENGTH_LONG).show();
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(),R.string.code_invalid,Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    };
 
+                Response.ErrorListener errorListener = new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        VolleyLog.e("VolleyError", "Error: " + volleyError.getMessage());
+                        volleyError.printStackTrace();
+                        pDialog.hide();
+                        Toast.makeText(getApplicationContext(),R.string.volley_error,Toast.LENGTH_SHORT).show();
+                    }
+                };
+                pDialog.show();
+
+                this.volleyHelper.post("generic/claimCode",json,volleyListener,errorListener);
+            }
+            else{
+                Toast.makeText(this,R.string.reach_server_error,Toast.LENGTH_LONG).show();
+            }
         }
     }
-    */
+
 }

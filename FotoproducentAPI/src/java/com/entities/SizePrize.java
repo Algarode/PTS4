@@ -7,6 +7,7 @@
 package com.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,13 +18,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Hafid
+ * @author rob
  */
 @Entity
 @Table(name = "size_prize")
@@ -43,12 +47,14 @@ public class SizePrize implements Serializable {
     @NotNull
     @Column(name = "price")
     private double price;
-    @JoinColumn(name = "photographerID", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private User photographerID;
+    @OneToMany(mappedBy = "sizeID")
+    private Collection<OrderLine> orderLineCollection;
     @JoinColumn(name = "sizeID", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Size1 sizeID;
+    @JoinColumn(name = "photographerID", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private User photographerID;
 
     public SizePrize() {
     }
@@ -78,12 +84,14 @@ public class SizePrize implements Serializable {
         this.price = price;
     }
 
-    public User getPhotographerID() {
-        return photographerID;
+    @XmlTransient
+    @JsonIgnore
+    public Collection<OrderLine> getOrderLineCollection() {
+        return orderLineCollection;
     }
 
-    public void setPhotographerID(User photographerID) {
-        this.photographerID = photographerID;
+    public void setOrderLineCollection(Collection<OrderLine> orderLineCollection) {
+        this.orderLineCollection = orderLineCollection;
     }
 
     public Size1 getSizeID() {
@@ -92,6 +100,14 @@ public class SizePrize implements Serializable {
 
     public void setSizeID(Size1 sizeID) {
         this.sizeID = sizeID;
+    }
+
+    public User getPhotographerID() {
+        return photographerID;
+    }
+
+    public void setPhotographerID(User photographerID) {
+        this.photographerID = photographerID;
     }
 
     @Override

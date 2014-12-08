@@ -31,7 +31,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Hafid
+ * @author rob
  */
 @Entity
 @Table(name = "bestelling")
@@ -52,11 +52,11 @@ public class Bestelling implements Serializable {
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderID")
+    private Collection<OrderLine> orderLineCollection;
     @JoinColumn(name = "userID", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userID;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderID")
-    private Collection<OrderLine> orderLineCollection;
 
     public Bestelling() {
     }
@@ -86,14 +86,6 @@ public class Bestelling implements Serializable {
         this.date = date;
     }
 
-    public User getUserID() {
-        return userID;
-    }
-
-    public void setUserID(User userID) {
-        this.userID = userID;
-    }
-
     @XmlTransient
     @JsonIgnore
     public Collection<OrderLine> getOrderLineCollection() {
@@ -102,6 +94,14 @@ public class Bestelling implements Serializable {
 
     public void setOrderLineCollection(Collection<OrderLine> orderLineCollection) {
         this.orderLineCollection = orderLineCollection;
+    }
+
+    public User getUserID() {
+        return userID;
+    }
+
+    public void setUserID(User userID) {
+        this.userID = userID;
     }
 
     @Override

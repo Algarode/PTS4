@@ -9,6 +9,7 @@
 
     <application
         android:allowBackup="true"
+        android:name="edwin.team.com.photoclient.Classes.AppController"
         android:icon="@drawable/camera"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         android:debuggable="true"
@@ -46,9 +47,24 @@
             android:name=".Activities.CollectionActivity"
             android:label="@string/title_activity_collection" >
         </activity>
-        <activity android:name=".Activities.ProductConfirmationActivity"
+        <activity
+            android:name=".Activities.ProductConfirmationActivity"
             android:screenOrientation="landscape"
-            android:label="@string/title_activity_product_confirmation"></activity>
+            android:label="@string/title_activity_collection" >
+        </activity>
+        <activity android:name=".Activities.PickProductActivity"
+            android:screenOrientation="landscape"
+            android:label="@string/title_section4" >
+        </activity>
+        <activity android:name=".Activities.PickPhotoActivity"
+            android:screenOrientation="landscape"
+            android:label="@string/title_section4">
+        </activity>
+        <activity android:name=".Activities.ProductPhotoActivity"
+            android:screenOrientation="landscape"
+            android:label="@string/title_section4">
+        </activity>
+
     </application>
-	
+
 </manifest>

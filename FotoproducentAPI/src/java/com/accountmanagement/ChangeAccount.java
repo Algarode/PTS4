@@ -68,7 +68,6 @@ public class ChangeAccount {
             String city = jObj.optString("city");
             String country = jObj.optString("country");
             
-            
             Account account = dbManager.findById(Account.class, userId);
             account.setUserName(email);
             account.setPassword(password);
@@ -80,7 +79,10 @@ public class ChangeAccount {
             user.setPostalCode(postalCode);
             user.setStreet(street);
 
-            dbManager.save(account);
+            if (password != null && !password.isEmpty()) {
+                dbManager.save(account);
+            }
+            dbManager.save(user);
 
         } catch (Exception ex) {
             Logger.getLogger(ChangeAccount.class.getName()).log(Level.SEVERE, null, ex);
@@ -100,7 +102,7 @@ public class ChangeAccount {
         try {
             jObj = new JSONObject(json);
             Integer userID = Integer.parseInt(jObj.getString("userID"));
-            User user = dbManager.findById(User.class, userID);
+            User user = dbManager.getUser(userID);
             
             jObj.put("middle_name",user.getMiddleName());
             jObj.put("last_name",user.getLastName());

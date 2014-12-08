@@ -1,17 +1,18 @@
 package edwin.team.com.photoclient.Classes;
 
 
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
 
 import java.io.Serializable;
 
 public class OrderLine implements Serializable{
-    private Integer photoID, sizeID, amount;
+    private Integer  sizeID, amount;
+    String photoID;
     private Double price;
-    private Drawable image;
+    private Bitmap image;
     private String name;
 
-    public OrderLine(Integer photoID, Double price, Integer sizeID, Integer amount, Drawable image, String name){
+    public OrderLine(String photoID, Double price, Integer sizeID, Integer amount, Bitmap image, String name){
         this.photoID = photoID;
         this.price = price;
         this.sizeID = sizeID;
@@ -32,9 +33,13 @@ public class OrderLine implements Serializable{
         return this.amount;
     }
 
-    public Drawable getImage() { return this.image; }
+    public Bitmap getImage() { return this.image; }
 
     public String getName() { return this.name; }
+
+    public Integer getSizeID() { return this.sizeID; }
+
+    public String getPhotoID() { return this.photoID; }
 
     public void setSize(Integer sizeID){
         this.sizeID = sizeID;

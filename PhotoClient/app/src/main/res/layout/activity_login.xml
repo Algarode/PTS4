@@ -37,8 +37,9 @@
                         android:imeOptions="actionNext"
                         android:background="@drawable/edittext_border"
                         android:id="@+id/login_username"
-                        android:hint="Username"
-                        android:inputType="textNoSuggestions"
+                        android:hint="@string/login_username"
+                        android:text="r@r.com"
+                        android:inputType="textEmailAddress"
                         android:layout_weight="0.9" >
                     </EditText>
                 </TableRow>
@@ -56,13 +57,14 @@
                         android:textSize="30sp"
                         android:textColor="@color/White"
                         android:layout_height="wrap_content"
-                        android:password="true"
+                        android:inputType="textPassword"
                         android:singleLine="true"
                         android:imeOptions="actionDone"
                         android:padding="10dp"
                         android:id="@+id/login_password"
                         android:background="@drawable/edittext_border"
-                        android:hint="Password"
+                        android:text="qwerty"
+                        android:hint="@string/password_login"
                         android:layout_weight="0.9" />
                 </TableRow>
                 <TableRow
@@ -78,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
                         android:textColor="@color/White"
-                        android:onClick="skiplogin"
+                        android:onClick="login"
                         android:id="@+id/login_submit"
                         android:text="@string/login_button" />
                 </TableRow>

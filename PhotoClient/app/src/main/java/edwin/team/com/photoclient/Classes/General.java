@@ -11,12 +11,12 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 
-public class General {
-      static String IPADRESS = "192.168.2.13";
+public class General extends AppController {
+      static String IPADRESS = "192.168.1.110";//"192.168.2.13";
       static String PORT = "8080";
-      static String FULLAPIPATH = "http://"+IPADRESS+":"+PORT+"/FotoproducentAPI/api/";
+      public static String FULLAPIPATH = "http://"+IPADRESS+":"+PORT+"/FotoproducentAPI/api/";
       public static int USERID = 0;
-      public static int USERROLE = 0;
+      public static int ROLEID = 0;
 
       public static Boolean reachHost(){
         boolean exists = false;

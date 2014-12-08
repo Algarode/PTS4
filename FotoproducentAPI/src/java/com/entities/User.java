@@ -29,7 +29,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Hafid
+ * @author rob
  */
 @Entity
 @Table(name = "user")
@@ -96,16 +96,16 @@ public class User implements Serializable {
     @Size(min = 1, max = 5)
     @Column(name = "country")
     private String country;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
-    private Collection<Bestelling> bestellingCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "photographerID")
-    private Collection<SizePrize> sizePrizeCollection;
     @OneToMany(mappedBy = "photographerID")
     private Collection<Album> albumCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<com.entities.Collection> collectionCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "photographerID")
+    private Collection<SizePrize> sizePrizeCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "photographerId")
     private Collection<Photo> photoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
-    private Collection<com.entities.Collection> collectionCollection;
+    private Collection<Bestelling> bestellingCollection;
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @OneToOne(optional = false)
     private Account accountId;
@@ -211,12 +211,22 @@ public class User implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public Collection<Bestelling> getBestellingCollection() {
-        return bestellingCollection;
+    public Collection<Album> getAlbumCollection() {
+        return albumCollection;
     }
 
-    public void setBestellingCollection(Collection<Bestelling> bestellingCollection) {
-        this.bestellingCollection = bestellingCollection;
+    public void setAlbumCollection(Collection<Album> albumCollection) {
+        this.albumCollection = albumCollection;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<com.entities.Collection> getCollectionCollection() {
+        return collectionCollection;
+    }
+
+    public void setCollectionCollection(Collection<com.entities.Collection> collectionCollection) {
+        this.collectionCollection = collectionCollection;
     }
 
     @XmlTransient
@@ -231,16 +241,6 @@ public class User implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public Collection<Album> getAlbumCollection() {
-        return albumCollection;
-    }
-
-    public void setAlbumCollection(Collection<Album> albumCollection) {
-        this.albumCollection = albumCollection;
-    }
-
-    @XmlTransient
-    @JsonIgnore
     public Collection<Photo> getPhotoCollection() {
         return photoCollection;
     }
@@ -251,12 +251,12 @@ public class User implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public Collection<com.entities.Collection> getCollectionCollection() {
-        return collectionCollection;
+    public Collection<Bestelling> getBestellingCollection() {
+        return bestellingCollection;
     }
 
-    public void setCollectionCollection(Collection<com.entities.Collection> collectionCollection) {
-        this.collectionCollection = collectionCollection;
+    public void setBestellingCollection(Collection<Bestelling> bestellingCollection) {
+        this.bestellingCollection = bestellingCollection;
     }
 
     public Account getAccountId() {
