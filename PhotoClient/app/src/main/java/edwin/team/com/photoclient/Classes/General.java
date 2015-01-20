@@ -1,8 +1,11 @@
 package edwin.team.com.photoclient.Classes;
 
 
+import android.graphics.Bitmap;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,11 +15,12 @@ import java.net.Socket;
 import java.net.SocketAddress;
 
 public class General extends AppController {
-      static String IPADRESS = "192.168.1.110";//"192.168.2.13";
+      static String IPADRESS = "145.93.113.209";
       static String PORT = "8080";
       public static String FULLAPIPATH = "http://"+IPADRESS+":"+PORT+"/FotoproducentAPI/api/";
       public static int USERID = 0;
       public static int ROLEID = 0;
+    public static Bitmap bmp;
 
       public static Boolean reachHost(){
         boolean exists = false;
@@ -54,5 +58,18 @@ public class General extends AppController {
                 passed = Boolean.parseBoolean(result);
         }
         return passed;
+    }
+
+    public static Bitmap generateBitmap(ImageView v){
+        v.setDrawingCacheEnabled(true);
+
+        v.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        v.layout(0, 0, v.getMeasuredWidth(), v.getMeasuredHeight());
+
+        v.buildDrawingCache(true);
+        Bitmap b = Bitmap.createBitmap(v.getDrawingCache());
+        v.setDrawingCacheEnabled(false);
+        return b;
     }
 }

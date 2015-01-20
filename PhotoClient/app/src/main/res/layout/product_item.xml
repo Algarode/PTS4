@@ -5,9 +5,9 @@
     android:background="@color/WhiteSmoke">
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="150dp"
         android:id="@+id/li_photo_pc"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:adjustViewBounds="true"
         android:layout_margin="10dp"
         android:layout_weight="5"
@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_margin="20dp"
+        android:background="@color/mainControlBackground"
         android:id="@+id/li_size_pc"
         android:layout_weight="4"/>
     <EditText
@@ -25,10 +26,11 @@
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_weight="6"
         android:hint="@string/amount"
-        android:imeOptions="actionDone"
+        android:background="@drawable/edittext_border"
         android:id="@+id/li_amount_pc"
-        android:inputType="number"
-        android:layout_margin="20dp"/>
+        android:inputType="phone"
+        android:layout_margin="20dp"
+        android:textColor="@color/Black"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,5 +38,6 @@
         android:layout_weight="6"
         android:textSize="20sp"
         android:layout_margin="20dp"
-        android:id="@+id/li_price_pc"/>
+        android:id="@+id/li_price_pc"
+        android:textColor="@color/Black"/>
 </LinearLayout>

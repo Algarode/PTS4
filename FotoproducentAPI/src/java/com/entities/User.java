@@ -106,6 +106,8 @@ public class User implements Serializable {
     private Collection<Photo> photoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<Bestelling> bestellingCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Collection<Subscription> subscriptionCollection;
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @OneToOne(optional = false)
     private Account accountId;
@@ -257,6 +259,16 @@ public class User implements Serializable {
 
     public void setBestellingCollection(Collection<Bestelling> bestellingCollection) {
         this.bestellingCollection = bestellingCollection;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<Subscription> getSubscriptionCollection() {
+        return subscriptionCollection;
+    }
+
+    public void setSubscriptionCollection(Collection<Subscription> subscriptionCollection) {
+        this.subscriptionCollection = subscriptionCollection;
     }
 
     public Account getAccountId() {

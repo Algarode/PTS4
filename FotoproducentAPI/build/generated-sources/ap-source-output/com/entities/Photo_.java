@@ -1,21 +1,26 @@
 package com.entities;
 
+import com.entities.Collection;
+import com.entities.OrderLine;
+import com.entities.PhotoAlbum;
+import com.entities.ProductPhoto;
 import com.entities.User;
 import javax.annotation.Generated;
+import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2014-09-16T19:13:56")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-01-10T14:59:30")
 @StaticMetamodel(Photo.class)
 public class Photo_ { 
 
+    public static volatile CollectionAttribute<Photo, OrderLine> orderLineCollection;
     public static volatile SingularAttribute<Photo, User> photographerId;
-    public static volatile SingularAttribute<Photo, String> extension;
-    public static volatile SingularAttribute<Photo, Integer> size;
-    public static volatile SingularAttribute<Photo, Double> price;
     public static volatile SingularAttribute<Photo, String> name;
+    public static volatile CollectionAttribute<Photo, ProductPhoto> productPhotoCollection;
     public static volatile SingularAttribute<Photo, String> location;
-    public static volatile SingularAttribute<Photo, Integer> id;
-    public static volatile SingularAttribute<Photo, Double> dimensions;
+    public static volatile SingularAttribute<Photo, String> id;
+    public static volatile CollectionAttribute<Photo, PhotoAlbum> photoAlbumCollection;
+    public static volatile CollectionAttribute<Photo, Collection> collectionCollection;
 
 }

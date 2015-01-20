@@ -152,7 +152,7 @@ public class RegistrationActivity extends Activity {
                 json.put("land", spinner.getSelectedItem().toString());
 
                 // Set a loadingmessage for the user whilst serverdata is being retrieved
-                pDialog.setMessage(String.valueOf(R.string.account_being_saved));
+                pDialog.setMessage(getApplicationContext().getString(R.string.account_being_saved));
 
                 // The url extension of the method you want to call
                 String methodName =  "register/user";

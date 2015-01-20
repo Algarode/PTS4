@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="edwin.team.com.photoclient" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="16" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
+        android:name=".Classes.AppController"
         android:allowBackup="true"
-        android:name="edwin.team.com.photoclient.Classes.AppController"
         android:icon="@drawable/camera"
-        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        android:theme="@android:style/Theme.Holo.NoActionBar" >
         android:debuggable="true"
         <activity
             android:name=".Activities.LoginActivity"
@@ -25,6 +32,12 @@
         <activity
             android:name=".Activities.RegistrationActivity"
             android:label="" />
+        <activity android:name=".Activities.EditPickPhotoActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".Activities.EditPhotoActivity"
+            android:label="Bewerk foto"
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".Activities.UploadActivity"
             android:label=""
@@ -40,31 +53,77 @@
         </activity>
         <activity
             android:name=".Activities.ShoppingCartActivity"
-            android:screenOrientation="landscape"
-            android:label="@string/title_activity_shoppingcart" >
+            android:label="@string/title_activity_shoppingcart"
+            android:screenOrientation="landscape" >
         </activity>
-		<activity
+        <activity
             android:name=".Activities.CollectionActivity"
             android:label="@string/title_activity_collection" >
         </activity>
         <activity
             android:name=".Activities.ProductConfirmationActivity"
-            android:screenOrientation="landscape"
-            android:label="@string/title_activity_collection" >
+            android:label="@string/title_activity_collection"
+            android:screenOrientation="landscape" >
         </activity>
-        <activity android:name=".Activities.PickProductActivity"
-            android:screenOrientation="landscape"
-            android:label="@string/title_section4" >
+        <activity
+            android:name=".Activities.PhotographerCollectionActivity"
+            android:label="@string/title_activity_photographer_collection"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
-        <activity android:name=".Activities.PickPhotoActivity"
-            android:screenOrientation="landscape"
-            android:label="@string/title_section4">
+        <activity
+            android:name=".Activities.PhotographerPriceActivity"
+            android:label="@string/title_activity_collection"
+            android:screenOrientation="landscape" >
         </activity>
-        <activity android:name=".Activities.ProductPhotoActivity"
-            android:screenOrientation="landscape"
-            android:label="@string/title_section4">
+        <activity
+            android:name=".Activities.OrderSummaryActivity"
+            android:label="@string/title_activity_collection"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".Activities.OrderInfoActivity"
+            android:label="@string/title_activity_collection"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".Activities.UserInfoActivity"
+            android:label="@string/title_activity_collection"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".Activities.SubscriptionActivity"
+            android:label="@string/title_activity_collection"
+            android:screenOrientation="landscape" >
         </activity>
 
+        <service
+            android:name="com.paypal.android.sdk.payments.PayPalService"
+            android:exported="false" />
+
+        <activity android:name="com.paypal.android.sdk.payments.PaymentActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
+        <activity
+            android:name=".Activities.PickProductActivity"
+            android:label="@string/title_section4"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.PickPhotoActivity"
+            android:label="@string/title_section4"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.ProductPhotoActivity"
+            android:label="@string/title_section4"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.MainDashboardActivity"
+            android:label="@string/title_activity_main_dashboard" >
+        </activity>
+        <activity
+            android:name=".Activities.FillCodeActivity"
+            android:label="@string/title_activity_fill_code" >
+        </activity>
     </application>
 
 </manifest>

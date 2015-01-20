@@ -2,15 +2,16 @@ package edwin.team.com.photoclient.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.widget.ImageView;
-import java.util.ArrayList;
-
+import android.view.View;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+import edwin.team.com.photoclient.Classes.AppController;
 import edwin.team.com.photoclient.Classes.BitmapByteArrayConversion;
 import edwin.team.com.photoclient.Classes.ImageCollection;
+import edwin.team.com.photoclient.Classes.ProductCollection;
+import edwin.team.com.photoclient.Classes.ShoppingCart;
+import edwin.team.com.photoclient.Classes.VolleyHelper;
 import edwin.team.com.photoclient.R;
 
 /**
@@ -18,46 +19,46 @@ import edwin.team.com.photoclient.R;
  */
 public class ProductPhotoActivity extends Activity {
 
-    ImageView imageView = (ImageView) findViewById(R.id.imageViewProductPhoto);
-    private ArrayList<ImageCollection> imageCollectionList;
-    BitmapByteArrayConversion bbac;
+    private ImageCollection imageCollection;
+    private ProductCollection productCollection;
+    private VolleyHelper helper = AppController.getVolleyHelper();
+    private ImageLoader imageLoader;
+    private BitmapByteArrayConversion bbac = new BitmapByteArrayConversion();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_combine_productphoto);
         Intent intent = getIntent();
-        this.imageCollectionList = (ArrayList<ImageCollection>) intent.getSerializableExtra("collection");
+        this.imageCollection = (ImageCollection) intent.getSerializableExtra("collection");
+        this.productCollection = (ProductCollection) intent.getSerializableExtra("pcollection");
+        this.imageLoader = helper.getImageLoader();
 
-        if (imageCollectionList.size() >= 2) {
-            Bitmap background = bbac.toBitmap(imageCollectionList.get(0).getImageByte());
-            Bitmap photo = bbac.toBitmap(imageCollectionList.get(1).getImageByte());
-            combineProductPhoto(background, photo);
-        }
+        NetworkImageView background = (NetworkImageView) findViewById(R.id.nivBackground);
+        NetworkImageView foreground = (NetworkImageView) findViewById(R.id.nivForeground);
+
+        background.setImageUrl(productCollection.getImageURL(), imageLoader);
+        background.setDefaultImageResId(R.drawable.loading);
+        background.setErrorImageResId(R.drawable.error);
+        background.setId(0);
+
+        foreground.setImageUrl(imageCollection.getImageUrl(), imageLoader);
+        foreground.setDefaultImageResId(R.drawable.loading);
+        foreground.setErrorImageResId(R.drawable.error);
+        foreground.setId(0);
     }
 
-    private boolean checkDimensions (Bitmap photo) {
-        int w = photo.getWidth();
-        int h = photo.getHeight();
+    public void btnClick(View view) {
+        ShoppingCart cart = AppController.getShoppingCart();
+        cart.addOrderLine(
+                imageCollection.getId(), productCollection.getId(),
+                imageCollection.getPrice(), productCollection.getPrice(), 1,
+                bbac.toBitmap(imageCollection.getImageByte()), bbac.toBitmap(productCollection.getImageByte()),
+                imageCollection.getSizeName(), productCollection.getName());
 
-        if (w <= 50 || h <= 50) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public void combineProductPhoto (Bitmap background, Bitmap photo) {
-        Drawable bg = new BitmapDrawable(getResources(), background);
-        Drawable p = new BitmapDrawable(getResources(), photo);
-
-        imageView.setBackground(bg);
-        if (this.checkDimensions(photo)) {
-            imageView.setImageDrawable(p);
-        } else {
-            Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(photo, 50, 50, true));
-            imageView.setImageDrawable(d);
-        }
-
+        Intent intent = new Intent(this, MainDashboardActivity.class);
+        this.startActivity(intent);
+        finish();
     }
 
 }

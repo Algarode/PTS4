@@ -50,7 +50,7 @@ public class DashboardActivity extends Activity
         setTheme(R.style.CustomActionBarTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
+        pDialog = new ProgressDialog(this);
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -120,7 +120,7 @@ public class DashboardActivity extends Activity
     }
 
     public void testImageCollectionPage(View view) {
-        Intent intent = new Intent(this, CollectionActivity.class);
+        Intent intent = new Intent(this, OrderSummaryActivity.class);
         this.startActivity(intent);
     }
 
@@ -164,16 +164,15 @@ public class DashboardActivity extends Activity
         }
 
     }
-//dashboard item handling
 
     public void getPhoto(View view) throws JSONException {
         EditText code = (EditText) findViewById(R.id.UniekeCodeCash);
         //code.setText("p_g6x3rlb5k");
-        if(!code.getText().equals("")){
+        if(!code.getText().toString().equals("")){
             if(General.reachHost() && this.volleyHelper != null) {
                 pDialog.setMessage(String.valueOf(R.string.claiming_code));
                 JSONObject json = new JSONObject();
-                json.put("code", code.getText());
+                json.put("code", code.getText().toString());
                 json.put("uid", General.USERID);
                     Response.Listener<JSONObject> volleyListener = new Response.Listener<JSONObject>() {
                         @Override

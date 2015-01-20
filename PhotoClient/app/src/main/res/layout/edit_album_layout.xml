@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="300dp"
+    android:focusable="true"
+    android:padding="16dp"
+    android:focusableInTouchMode="true"
+    android:background="@color/mainBackground">
+
+    <TableRow
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="16dp">
+        <EditText
+            android:layout_weight="1"
+            android:id="@+id/newAlbumName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/newAlbumName"/>
+
+        <Button style="@style/tableHeader"
+            android:id="@+id/saveNewName"
+            android:layout_weight="1.5"
+            android:text="@string/SaveAlbum"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/actionbar_background"/>
+    </TableRow>
+    <Button style="@style/tableHeader"
+        android:id="@+id/btnDeleteAlbum"
+        android:text="@string/DeleteAlbum"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:fontFamily="sans-serif"
+        android:background="@drawable/actionbar_background"/>
+
+</LinearLayout>

@@ -98,7 +98,31 @@
     <string name="processing_images">Afbeeldingen worden verwerkt, een moment geduld a.u.b.</string>
     <string name="no_photos_selected">Er zijn geen foto\'s geselecteerd</string>
     <string name="fetching_data">Data wordt opgehaald...</string>
-    <string name="next">Volgende</string>
+    <string name="picture_settings_prices">Foto prijs</string>
+    <string name="could_not_retrieve_prices">Kon prijzen niet ophalen</string>
+	<string name="next">Volgende</string>
+    <string name="DeleteAlbum">Delete album</string>
+    <string name="SaveAlbum">Save album</string>
+    <string name="newAlbumName">New album</string>
+    <string name="title_activity_photographer_collection">Fotograaf collectie</string>
+    <string name="changes_saved">Je wijzigingen worden opgeslagen een ogenblik geduld a.u.b.</string>
+    <string name="sent">Verstuurd</string>
+    <string name="gender">geslacht</string>
+    <string name="country">land</string>
+    <string name="start_date">start datum</string>
+    <string name="end_date">eind datum</string>
+    <string name="activated">geactiveerd</string>
+    <string name="amount_sold">aantal verkocht</string>
+    <string name="profit">opbrengst</string>
+    <string name="size">Afmeting</string>
+    <string name="price">Prijs</string>
+    <string name="prices_saved">Saved</string>
+    <string name="item_added_to_shoppingcart">Item toegevoegd aan winkelmandje</string>
+    <string name="gathering_order_data">Orderdata wordt opgehaald</string>
+    <string name="no_product_selected">geen product geselecteerd</string>
+    <string name="fetching_products">Producten ophalen...</string>
+    <string name="creating_album">Een album wordt aangemaakt een ogenblik geduld...</string>
+    <string name="editing_album">Het album wordt aangepast een ogenblik geduld...</string>
 
 
     <string-array name="size_array">

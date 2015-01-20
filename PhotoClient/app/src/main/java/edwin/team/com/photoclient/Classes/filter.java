@@ -8,7 +8,19 @@ import android.graphics.Color;
  */
 public class filter {
 //Based on : http://xjaphx.wordpress.com/learning/tutorials/
+//0 = none, 1= black and white, 2 = sepia no blue, 3 is Sepia Brown
+public static  Bitmap getRightFilteredMap(Bitmap src, int id){
+    if (id ==1){
+        return BlackNWhite(src);
+    } else if (id ==3){
+        return SepiaBrown(src);
+    } else if (id ==2){
+        return  SepiaNoBlue(src);
+    }else {
+        return src;
+    }
 
+}
 //set Image to balck and white
     public static Bitmap BlackNWhite(Bitmap src){
         // constant factors

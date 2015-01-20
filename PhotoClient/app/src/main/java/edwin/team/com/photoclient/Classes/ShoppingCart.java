@@ -50,6 +50,16 @@ public class ShoppingCart implements Serializable {
         this.totalPriceExTax += (price * amount);
     }
 
+    public void addOrderLine(String photoID, Double price, Integer sizeID, Integer amount, NeoBitmap nbmp, String name){
+        this.orders.put(photoID,new OrderLine(photoID,price,sizeID,amount, nbmp, name));
+        this.totalPriceExTax += (price * amount);
+    }
+
+    public void addOrderLine(String photoId, String productId, Double price, Double priceProduct, Integer amount, Bitmap photo, Bitmap product, String name, String productName) {
+        this.orders.put(photoId, new OrderLine(photoId, productId, price, priceProduct, amount, photo, product, name, productName));
+        this.totalPriceExTax += ((price + priceProduct) * amount);
+    }
+
     public void deleteOrderLine(String photoID){
         OrderLine order = orders.get(photoID);
         this.totalPriceExTax -= order.getTotalPrice();

@@ -41,6 +41,10 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Bestelling.findById", query = "SELECT b FROM Bestelling b WHERE b.id = :id"),
     @NamedQuery(name = "Bestelling.findByDate", query = "SELECT b FROM Bestelling b WHERE b.date = :date")})
 public class Bestelling implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "sent")
+    private int sent;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -127,6 +131,14 @@ public class Bestelling implements Serializable {
     @Override
     public String toString() {
         return "com.entities.Bestelling[ id=" + id + " ]";
+    }
+
+    public int getSent() {
+        return sent;
+    }
+
+    public void setSent(int sent) {
+        this.sent = sent;
     }
     
 }

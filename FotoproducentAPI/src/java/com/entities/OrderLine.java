@@ -32,7 +32,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "OrderLine.findAll", query = "SELECT o FROM OrderLine o"),
     @NamedQuery(name = "OrderLine.findById", query = "SELECT o FROM OrderLine o WHERE o.id = :id"),
     @NamedQuery(name = "OrderLine.findByProductPhotoId", query = "SELECT o FROM OrderLine o WHERE o.productPhotoId = :productPhotoId"),
-    @NamedQuery(name = "OrderLine.findByAmount", query = "SELECT o FROM OrderLine o WHERE o.amount = :amount")})
+    @NamedQuery(name = "OrderLine.findByAmount", query = "SELECT o FROM OrderLine o WHERE o.amount = :amount"),
+    @NamedQuery(name = "OrderLine.findByX", query = "SELECT o FROM OrderLine o WHERE o.x = :x"),
+    @NamedQuery(name = "OrderLine.findByY", query = "SELECT o FROM OrderLine o WHERE o.y = :y"),
+    @NamedQuery(name = "OrderLine.findByLength", query = "SELECT o FROM OrderLine o WHERE o.length = :length"),
+    @NamedQuery(name = "OrderLine.findByWidth", query = "SELECT o FROM OrderLine o WHERE o.width = :width"),
+    @NamedQuery(name = "OrderLine.findByFilterCode", query = "SELECT o FROM OrderLine o WHERE o.filterCode = :filterCode")})
 public class OrderLine implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,8 +51,28 @@ public class OrderLine implements Serializable {
     @NotNull
     @Column(name = "amount")
     private int amount;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "x")
+    private int x;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "y")
+    private int y;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "length")
+    private int length;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "width")
+    private int width;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "filter_code")
+    private int filterCode;
     @JoinColumn(name = "sizeID", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private SizePrize sizeID;
     @JoinColumn(name = "photoID", referencedColumnName = "id")
     @ManyToOne
@@ -63,9 +88,14 @@ public class OrderLine implements Serializable {
         this.id = id;
     }
 
-    public OrderLine(Integer id, int amount) {
+    public OrderLine(Integer id, int amount, int x, int y, int length, int width, int filterCode) {
         this.id = id;
         this.amount = amount;
+        this.x = x;
+        this.y = y;
+        this.length = length;
+        this.width = width;
+        this.filterCode = filterCode;
     }
 
     public Integer getId() {
@@ -90,6 +120,46 @@ public class OrderLine implements Serializable {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getFilterCode() {
+        return filterCode;
+    }
+
+    public void setFilterCode(int filterCode) {
+        this.filterCode = filterCode;
     }
 
     public SizePrize getSizeID() {

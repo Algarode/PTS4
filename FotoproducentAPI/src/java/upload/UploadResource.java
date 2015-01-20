@@ -7,16 +7,14 @@
 package upload;
 
 import com.entities.Account;
-import com.entities.Album;
 import com.entities.Bestelling;
-import com.entities.Collection;
 import com.entities.OrderLine;
 import com.entities.Photo;
-import com.entities.Size1;
+import com.entities.Product;
+import com.entities.ProductPhoto;
 import com.entities.SizePrize;
 import com.entities.User;
 import com.general.DBM;
-import com.generic.Hashids;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -54,7 +52,7 @@ import org.codehaus.jettison.json.JSONObject;
 @Path("upload")
 public class UploadResource extends HttpServlet{
     
-    String FOLDER_PATH = "";
+    String FOLDER_PATH, FOLDER_PATH_Local = "";
     String ORIGIN = "origin";
     String LOWRES = "lowres";
     int USERID = 0;
@@ -67,32 +65,8 @@ public class UploadResource extends HttpServlet{
     public UploadResource() throws UnknownHostException {
         dbManager = new DBM();
         IP = InetAddress.getLocalHost();
-        //FOLDER_PATH = "http://"+IP.getHostAddress()+":8080/FotoproducentAPI/images/";
-        FOLDER_PATH = "D:\\svn_repo\\Photoproject\\FotoproducentAPI\\web\\images\\";
-    }
-
-    
-    private String getUniqueId(String prefix) throws Exception
-    {
-        Hashids hashids = null;
-        String encoded = "";
-        
-            hashids = new Hashids("teamEdwin");
-            encoded = hashids.encode(System.currentTimeMillis()).toLowerCase();
-            
-            if(prefix.equals("p")){
-                
-                if (dbManager.findById(Photo.class, encoded) != null)
-                {
-                    getUniqueId(prefix);
-                }
-            } else {
-                if (dbManager.findById(Album.class, encoded) != null)
-                {
-                    getUniqueId(prefix);
-                }
-            }
-        return prefix +"_" + encoded;
+        FOLDER_PATH = "http://"+IP.getHostAddress()+":8080/FotoproducentAPI/images/";
+        FOLDER_PATH_Local = "D:\\svn_repo\\Photoproject\\FotoproducentAPI\\web\\images\\";
     }
       
     @POST
@@ -114,7 +88,7 @@ public class UploadResource extends HttpServlet{
                     
                     CreateFolderIfNotExists(PhotographId);
                     for(FileItem fi : items){ 
-                        String token = this.getUniqueId("p");
+                        String token = dbManager.getUniqueId("p");
                         SaveImages(fi);
                         SaveToDatabase(token, fi.getName(), PhotographId);
                     }
@@ -141,9 +115,9 @@ public class UploadResource extends HttpServlet{
     
     private void CreateFolderIfNotExists(int userId){
         USERID = userId;
-        File userFolder = new File(FOLDER_PATH+USERID);
-        File originFolder = new File(FOLDER_PATH+USERID+"/"+ORIGIN);
-        File lowresFolder = new File(FOLDER_PATH+USERID+"/"+LOWRES);
+        File userFolder = new File(FOLDER_PATH_Local+USERID);
+        File originFolder = new File(FOLDER_PATH_Local+USERID+"/"+ORIGIN);
+        File lowresFolder = new File(FOLDER_PATH_Local+USERID+"/"+LOWRES);
         
         if(!userFolder.exists())    {   userFolder.mkdir();     }
         if(!originFolder.exists())  {   originFolder.mkdir();   }
@@ -155,7 +129,7 @@ public class UploadResource extends HttpServlet{
         try{
             String extension = fitem.getContentType().split("/")[1];
 
-            File file = new File(FOLDER_PATH+USERID+"/"+ORIGIN+"/"+fitem.getName());
+            File file = new File(FOLDER_PATH_Local+USERID+"/"+ORIGIN+"/"+fitem.getName());
             fitem.write(file);
 
             BufferedImage bufferedImage = ImageIO.read(file);
@@ -165,7 +139,7 @@ public class UploadResource extends HttpServlet{
             g.drawImage(bufferedImage, 0, 0,bufferedImage.getWidth(), bufferedImage.getHeight(),null);
             g.dispose();
 
-            ImageIO.write(resizedImage, "jpg" , new File(FOLDER_PATH+USERID+"/"+LOWRES+"/"+fitem.getName()));     
+            ImageIO.write(resizedImage, "jpg" , new File(FOLDER_PATH_Local+USERID+"/"+LOWRES+"/"+fitem.getName()));     
             return true;
         }catch(Exception ex){
             Logger.getLogger(UploadResource.class.getName()).log(Level.SEVERE, null, ex);
@@ -198,14 +172,6 @@ public class UploadResource extends HttpServlet{
     }
     
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/products")
-    public String getProducts (String json) throws JSONException {
-        JSONObject jObj = new JSONObject(json);
-        return jObj.toString();
-    }
-    
-    @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/order")
@@ -214,7 +180,7 @@ public class UploadResource extends HttpServlet{
             JSONObject jObj = new JSONObject(orders);
             User user = null;
             if(jObj.optInt("uid") != 0)
-                user = dbManager.getUser(jObj.optInt("uid"));
+                user = dbManager.getUserbyAccountId(jObj.optInt("uid"));
             if(user != null){
                 jObj.remove("uid");
                 java.util.Date dt = new java.util.Date();
@@ -243,6 +209,25 @@ public class UploadResource extends HttpServlet{
                         ol.setOrderID(best);
                         ol.setPhotoID(dbManager.findById(Photo.class, photoID));
                         ol.setSizeID(dbManager.findById(SizePrize.class, sizeID));
+                        if (order.getString("Neo").equalsIgnoreCase("true")){
+                            ol.setX(order.getInt("x"));
+                            ol.setY(order.getInt("y"));
+                            ol.setFilterCode(order.getInt("filter"));
+                            ol.setWidth(order.getInt("width"));
+                            ol.setLength(order.getInt("height"));
+                        }
+//                        if (order.optString("productID") != "") {
+//                            //String productID = order.optString("productID");
+//                            int productID = order.getInt("productID");
+//                            
+////                            if (photoID != "" && productID > 0) {
+////                                ProductPhoto pp = new ProductPhoto();
+////                                pp.setPhotoID(dbManager.findById(Photo.class, photoID));
+////                                pp.setProductID(dbManager.findById(Product.class, productID));
+////                                //dbManager.save(pp);
+////                                ol.setProductPhotoId(pp.getId());
+////                            }
+//                        }
                         dbManager.save(ol);
                     }
                 }

@@ -1,0 +1,62 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:context="edwin.team.com.photoclient.Fragments.UserDashboardFragment">
+
+    <Button
+        android:layout_width="240dp"
+        android:layout_height="200dp"
+        android:text="Gegevens wijzigen"
+        android:textColor="@color/White"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="bold"
+        android:background="@drawable/flat_button_background"
+        android:layout_gravity="left"
+        android:drawableTop="@drawable/editor"
+        android:drawablePadding="-35dp"
+        android:onClick="btnEdit"/>
+
+
+
+    <Button
+        android:layout_width="240dp"
+        android:layout_height="200dp"
+        android:text="Prijzen wijzigen"
+        android:textColor="@color/White"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="bold"
+        android:background="@drawable/flat_button_background"
+        android:layout_gravity="right"
+        android:drawableTop="@drawable/priceedit"
+        android:drawablePadding="-35dp"
+        android:onClick="btnEditPrice"/>
+
+    <Button
+        android:layout_width="240dp"
+        android:layout_height="200dp"
+        android:text="Collectie bekijken"
+        android:textColor="@color/White"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="bold"
+        android:background="@drawable/flat_button_background"
+        android:layout_gravity="center_horizontal"
+        android:drawableTop="@drawable/images"
+        android:drawablePadding="-35dp"
+        android:onClick="btnPhotographCollection"/>
+
+
+    <Button
+        android:layout_width="240dp"
+        android:layout_height="200dp"
+        android:text="Upload"
+        android:textColor="@color/White"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="bold"
+        android:background="@drawable/flat_button_background"
+        android:layout_gravity="center|bottom"
+        android:drawableTop="@drawable/uploaddashboard"
+        android:drawablePadding="-35dp"
+        android:onClick="btnUpload"/>
+
+</FrameLayout>

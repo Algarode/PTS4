@@ -61,6 +61,7 @@ public class ProductConfirmationAdapter extends ArrayAdapter<ImageCollection>{
             final AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    View v = view;
                     ((ProductConfirmationActivity) context).changePrice(position, i);
                 }
 

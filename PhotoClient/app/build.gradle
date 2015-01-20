@@ -13,7 +13,7 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -26,6 +26,7 @@ dependencies {
     compile 'com.android.support:support-v4:20.0.0'
     compile 'org.apache.httpcomponents:httpmime:4.2.5'
     compile files('libs/volley.jar')
+
 }
 
 android {

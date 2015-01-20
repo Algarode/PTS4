@@ -143,4 +143,11 @@
     <color name="MainColor">#1371c8</color>
     <color name="MainTextColor">#51575b</color>
     <color name="ShoppingCartBackground">#f4f8f9</color>
+
+
+    <color name="Peter_River">#3498db</color>
+    <color name="Clouds">#ecf0f1</color>
+
+    <color name="mainControlBackground">#1976d2</color>
+    <color name="mainBackground">#e1f5fe</color>
 </resources>

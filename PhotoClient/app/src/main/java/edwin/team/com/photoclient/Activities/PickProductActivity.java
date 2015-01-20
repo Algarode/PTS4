@@ -3,42 +3,46 @@ package edwin.team.com.photoclient.Activities;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
-import android.widget.RadioButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.NetworkImageView;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.ExecutionException;
 import edwin.team.com.photoclient.Classes.AppController;
 import edwin.team.com.photoclient.Classes.BitmapByteArrayConversion;
 import edwin.team.com.photoclient.Classes.General;
-import edwin.team.com.photoclient.Classes.ImageCollection;
+import edwin.team.com.photoclient.Classes.Price;
 import edwin.team.com.photoclient.Classes.ProductAdapter;
+import edwin.team.com.photoclient.Classes.ProductCollection;
 import edwin.team.com.photoclient.Classes.VolleyHelper;
+import edwin.team.com.photoclient.R;
 
 public class PickProductActivity extends Activity {
 
     private GridView gridView = null;
     private VolleyHelper volleyHelper = null;
     ProgressDialog progressDialog;
-    private ArrayList<ImageCollection> collection;
-    private ArrayList<ImageCollection> checkedCollection = new ArrayList<ImageCollection>();
+    private ArrayList<ProductCollection> collection;
+    private ProductCollection chosenProduct;
     private BitmapByteArrayConversion convert = new BitmapByteArrayConversion();
+    private boolean isChecked = false;
+    private BitmapByteArrayConversion bbac = new BitmapByteArrayConversion();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pick_product);
         this.volleyHelper = AppController.getVolleyHelper();
         this.progressDialog = new ProgressDialog(this);
+        gridView = (GridView) findViewById(R.id.gvPickProduct);
 
         try {
             getProducts();
@@ -54,20 +58,32 @@ public class PickProductActivity extends Activity {
     private void getProducts() throws ExecutionException, InterruptedException, JSONException {
 
         JSONObject jsonObject = new JSONObject();
-        collection = new ArrayList<ImageCollection>();
-        String methodName = "generic/getProducts";
+        collection = new ArrayList<ProductCollection>();
+        String methodName = "products/getProducts";
         
         if (General.reachHost() && this.volleyHelper != null) {
 
             jsonObject.put("uid", General.USERID);
-            progressDialog.setMessage("Fetching data...");
+            progressDialog.setMessage(getString(R.string.fetching_products));
 
             Response.Listener<JSONObject> volleyListener = new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject responseJson) {
                     if (responseJson != null) {
-                        setGridView();
-                        progressDialog.hide();
+                        try {
+                            for (Iterator<String> iter = responseJson.keys(); iter.hasNext();) {
+                                String key = iter.next();
+                                ArrayList<Price> prices = new ArrayList<Price>();
+                                JSONObject obj = (JSONObject) responseJson.get(key);
+                                ProductCollection coll = new ProductCollection(obj.getString("location"), obj.getString("id"), obj.getString("name"), obj.optDouble("price"));
+                                collection.add(coll);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } finally {
+                            setGridView();
+                            progressDialog.hide();
+                        }
                     }
                 }
             };
@@ -78,12 +94,12 @@ public class PickProductActivity extends Activity {
 
                     VolleyLog.e("VolleyError", "Error: " + volleyError.getMessage());
                     volleyError.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "An error occurred with the server please try again later", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Er is een error opgetreden, probeer het later opnieuw", Toast.LENGTH_LONG).show();
 
                 }
             };
 
-            progressDialog.show();
+            //progressDialog.show();
 
             this.volleyHelper.post(methodName, jsonObject, volleyListener, errorListener);
 
@@ -93,46 +109,35 @@ public class PickProductActivity extends Activity {
 
     private void setGridView () {
 
-        ProductAdapter productAdapter = new ProductAdapter(this, collection);
+        ProductAdapter productAdapter = new ProductAdapter(collection, this);
         gridView.setAdapter(productAdapter);
 
     }
 
-    public void onRbImageChecked (View view){
-        boolean checked = ((RadioButton) view).isChecked();
-        int position = (Integer)view.getTag();
-        ImageCollection col = collection.get(position);
-        if(checked){
-            checkedCollection.add(col);
-        } else  {
-            checkedCollection.remove(col);
+    public void onRbImageChecked (ProductCollection collect, ImageView i) {
+
+        for(ProductCollection col : this.collection){
+            if(col.getId() == collect.getId()){
+                col.setChecked(true);
+                this.chosenProduct = col;
+                this.isChecked = true;
+                col.setImageByte(bbac.toByteArray(General.generateBitmap(i)));
+            }
+            else
+                col.setChecked(false);
         }
+        setGridView();
     }
 
     public void btnClick (View view) {
 
-        if(checkedCollection.size() != 0){
-
-            ProgressDialog d = new ProgressDialog(this);
-            d.setMessage("Processing images, please wait");
-            d.show();
-            for(int i = 0; i < checkedCollection.size(); i++){
-
-                int id = getResources().getIdentifier("resource"+i, "id", getPackageName());
-
-                NetworkImageView image = (NetworkImageView)findViewById(id);
-                Bitmap bmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
-
-                checkedCollection.get(i).setImageByte(convert.toByteArray(bmap));
-            }
-
-            d.hide();
-
+        if(isChecked){
             Intent intent = new Intent(this, PickPhotoActivity.class);
-            intent.putExtra("collection", checkedCollection);
+            intent.putExtra("collection", chosenProduct);
             this.startActivity(intent);
+            finish();
         } else
-            Toast.makeText(getApplicationContext(), "Geen product geselecteerd", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.no_product_selected), Toast.LENGTH_SHORT).show();
 
     }
 

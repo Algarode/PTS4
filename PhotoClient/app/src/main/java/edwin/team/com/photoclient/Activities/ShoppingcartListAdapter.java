@@ -2,6 +2,7 @@ package edwin.team.com.photoclient.Activities;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import java.text.NumberFormat;
 import java.util.List;
 
 import edwin.team.com.photoclient.Classes.OrderLine;
+import edwin.team.com.photoclient.Classes.filter;
 import edwin.team.com.photoclient.R;
 
 public class ShoppingcartListAdapter extends ArrayAdapter<OrderLine>{
@@ -49,7 +51,12 @@ public class ShoppingcartListAdapter extends ArrayAdapter<OrderLine>{
             TextView piecePrice = (TextView)view.findViewById(R.id.li_pieceprice);
             TextView totalPrice = (TextView)view.findViewById(R.id.li_totalprice);
 
-            iView.setImageBitmap(order.getImage());
+            //allows one to see the edited pic or the original by Stefan
+            if (order.getNeoBitmap() == null) {
+                iView.setImageBitmap(order.getImage());
+            } else {
+                    iView.setImageBitmap(order.getImage());
+            }
             iView.setOnClickListener(this.imageClickListener);
             tName.setText(order.getName());
             amount.setText(String.valueOf(order.getAmount()));

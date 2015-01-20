@@ -138,7 +138,7 @@ public class CollectionActivity extends Activity {
         if(checkedCollection.size() != 0){
 
             ProgressDialog d = new ProgressDialog(this);
-            d.setMessage(String.valueOf(R.string.processing_images));
+            d.setMessage(getApplicationContext().getString(R.string.processing_images));
             d.show();
             for(int i = 0; i < checkedCollection.size(); i++){
 

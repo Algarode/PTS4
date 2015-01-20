@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/White"
+    tools:context=".EditPhotoActivity">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Editing Options"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sepia Blue void"
+                android:onClick="SepianoBlue"
+                android:background="@drawable/actionbar_background"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Black 'n white"
+                android:id="@+id/BlacknWhite"
+                android:onClick="BlacknWhite"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/actionbar_background"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sepia Brown"
+                android:onClick="SepiaExperiment"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/actionbar_background"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Revert"
+                android:onClick="Revert"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/actionbar_background"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/AddToCart"
+                android:text="Add to cart"
+                android:onClick="AddToCart"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/actionbar_background"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/returnToSelect"
+                android:text="Go Back"
+                android:onClick="ReturnToSelect"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/actionbar_background"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/linearLayout"
+        android:id="@+id/linearLayout2"
+        android:layout_marginTop="16dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/relImg">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imgView"
+                android:scaleType="centerCrop"/>
+            <edwin.team.com.photoclient.Classes.CropRect
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/dragRect" />
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:id="@+id/relImg2"
+        android:orientation="vertical"
+        android:layout_below="@+id/linearLayout2">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/imgPreview"/>
+    </LinearLayout>
+</RelativeLayout>

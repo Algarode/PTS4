@@ -14,12 +14,7 @@ import com.general.DBM;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -40,8 +35,6 @@ public class ChangeAccount {
     @Context
     private UriInfo context;
     private DBM dbManager;
-    
-       
     
     /**
      * Creates a new instance of ChangeAccount
@@ -102,7 +95,7 @@ public class ChangeAccount {
         try {
             jObj = new JSONObject(json);
             Integer userID = Integer.parseInt(jObj.getString("userID"));
-            User user = dbManager.getUser(userID);
+            User user = dbManager.getUserbyAccountId(userID);
             
             jObj.put("middle_name",user.getMiddleName());
             jObj.put("last_name",user.getLastName());

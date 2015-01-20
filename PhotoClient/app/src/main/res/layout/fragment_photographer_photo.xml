@@ -1,0 +1,54 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edwin.team.com.photoclient.Fragments.PhotographerPhoto"
+    android:background="@color/WhiteSmoke"
+    android:id="@+id/fragment_photographer_photo">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <Button
+            android:id="@+id/btnToAlbum"
+            android:layout_width="250dp"
+            android:layout_height="75dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="To album"
+            android:background="@drawable/actionbar_background"
+            android:textColor="@color/White"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"/>
+
+        <Button
+            android:id="@+id/btnDeletePhoto"
+            android:layout_width="250dp"
+            android:layout_height="75dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="Delete"
+            android:background="@drawable/actionbar_background"
+            android:textColor="@color/White"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"/>
+
+        <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:clickable="true"
+            android:columnWidth="180dp"
+            android:numColumns="auto_fit"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="10dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            android:id="@+id/gridviewPhotographerPhoto"
+            android:layout_above="@id/btnToAlbum">
+        </GridView>
+    </RelativeLayout>
+</FrameLayout>

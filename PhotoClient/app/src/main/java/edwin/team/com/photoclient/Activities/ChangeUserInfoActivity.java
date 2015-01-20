@@ -3,7 +3,6 @@ package edwin.team.com.photoclient.Activities;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,12 +12,16 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.concurrent.ExecutionException;
+
 import edwin.team.com.photoclient.Classes.AppController;
 import edwin.team.com.photoclient.Classes.General;
 import edwin.team.com.photoclient.Classes.VolleyHelper;
@@ -90,7 +93,7 @@ public class ChangeUserInfoActivity extends Activity {
 
         if (General.reachHost() && this.volleyHelper != null) {
 
-            pDialog.setMessage(String.valueOf(R.string.fetching_data));
+            pDialog.setMessage(getApplicationContext().getString(R.string.fetching_data));
 
             jsonObject.put("userID", General.USERID);
             middle_name = (EditText) findViewById(R.id.etTussenvoegsel);
@@ -198,8 +201,9 @@ public class ChangeUserInfoActivity extends Activity {
             Response.Listener<JSONObject> volleyListener = new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject responseObject) {
-                    Intent dashBoard = new Intent(getApplicationContext(), DashboardActivity.class);
-                    startActivity(dashBoard);
+                 //   Intent dashBoard = new Intent(getApplicationContext(), MainDashboardActivity.class);
+                 //   startActivity(dashBoard);
+                    Toast.makeText(getApplicationContext(), "Info updated", Toast.LENGTH_SHORT).show();
                 }
             };
 
@@ -214,7 +218,7 @@ public class ChangeUserInfoActivity extends Activity {
 
             this.volleyHelper.post("account/update", jsonObject, volleyListener, errorListener);
 
-            Toast.makeText(this, R.string.reach_server_error, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, R.string.reach_server_error, Toast.LENGTH_SHORT).show();
         }
     }
 }

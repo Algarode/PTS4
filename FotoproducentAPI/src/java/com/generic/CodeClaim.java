@@ -50,7 +50,7 @@ public class CodeClaim {
             }
             else  {result.put("result", "true"); }
         }// Album
-        else if(code.startsWith("A")){
+        else if(code.startsWith("a")){
             List<Collection> ps = dbManager.verifyCodeAlbum(uid, code);
             if (ps == null){
                 result.put("result", "false");
@@ -75,21 +75,21 @@ public class CodeClaim {
             obj = new JSONObject(json);
             
             
-            int userId = obj.getInt("uid");
-            List<Collection> coll = dbManager.getCollectionByUserId(userId);
+            int accountID = obj.getInt("uid");
+            
+            List<Collection> coll = dbManager.getCollectionByUserId(accountID);
             JSONArray jArray = new JSONArray();
             
             obj = new JSONObject();
             
             int length = 0;
             for(Collection c: coll){
-                
                 Photo p = c.getPhotoID();
                 JSONObject jObj = new JSONObject();
                 if(p != null){
-                    
-                    jObj.put("location", "http://192.168.1.120:8080/FotoproducentAPI/images/"+ String.valueOf(userId)
-                            +"/lowres/"+p.getLocation());
+                    //jObj.put("location", "http://"+IP.getHostAddress()+":8080/FotoproducentAPI/images/"+ String.valueOf(p.getPhotographerId().getAccountId().getId())
+                            //+"/lowres/"+p.getLocation());
+                    jObj.put("location", "http://145.93.81.11:8080/FotoproducentAPI/images/" + String.valueOf(p.getPhotographerId().getAccountId().getId()) + "/lowres/" + p.getLocation());
                     jObj.put("name", p.getName());
                     jObj.put("id",p.getId());
                     

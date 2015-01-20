@@ -9,6 +9,7 @@ package com.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,7 +48,7 @@ public class SizePrize implements Serializable {
     @NotNull
     @Column(name = "price")
     private double price;
-    @OneToMany(mappedBy = "sizeID")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sizeID")
     private Collection<OrderLine> orderLineCollection;
     @JoinColumn(name = "sizeID", referencedColumnName = "id")
     @ManyToOne(optional = false)

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,10 +17,16 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.concurrent.ExecutionException;
 
@@ -38,6 +45,16 @@ public class ShoppingCartActivity extends Activity {
     private ShoppingcartListAdapter adapter;
     private TextView sub,btw,total;
     private String selectedPhotoID;
+    //set the environment for production/sandbox/no netowrk
+    private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_NO_NETWORK;
+    private static final String CONFIG_CLIENT_ID = "AWkWThCsnOjsjwZxR2KwkhQFHJAAtJ2Fxxex3ql2gOY5RZbNJJkWxgjrhIEX";
+    private static PayPalConfiguration config = new PayPalConfiguration()
+            .environment(CONFIG_ENVIRONMENT)
+            .clientId(CONFIG_CLIENT_ID)
+                    // The following are only used in PayPalFuturePaymentActivity.
+            .merchantName("PhotoClient");
+    private static final int REQUEST_CODE_PAYMENT = 1;
+
     NumberFormat format = NumberFormat.getCurrencyInstance();
     AlertDialog.Builder builder;
     VolleyHelper volleyHelper = null;
@@ -53,19 +70,23 @@ public class ShoppingCartActivity extends Activity {
         this.builder = new AlertDialog.Builder(ShoppingCartActivity.this);
 
         this.cart = AppController.getShoppingCart();
-
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         this.listview = (ListView)findViewById(R.id.listview_shop);
         this.pDialog = new ProgressDialog(this);
         this.volleyHelper = AppController.getVolleyHelper();
 
         this.updateListview();
+
+        Intent intent = new Intent(this, PayPalService.class);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+        startService(intent);
+
     }
 
     private void updateCosts(){
-        this.sub.setText(R.string.sub_total+" : " + format.format(cart.getTotalPriceExTax()));
-        this.btw.setText(R.string.tax+" : " + format.format(cart.getTax()));
-        this.total.setText(R.string.tax+" : " + format.format(cart.getTotalPriceIncTax()));
+        this.sub.setText(getApplicationContext().getString(R.string.sub_total)+" : " + format.format(cart.getTotalPriceExTax()));
+        this.btw.setText(getApplicationContext().getString(R.string.tax)+" : " + format.format(cart.getTax()));
+        this.total.setText(getApplicationContext().getString(R.string.total)+" : " + format.format(cart.getTotalPriceIncTax()));
     }
 
     public void updateShoppingCart(int amount, String photoID){
@@ -90,10 +111,18 @@ public class ShoppingCartActivity extends Activity {
     }
 
     public void submitOrder(View view) throws InterruptedException, ExecutionException, JSONException {
+
+        PayPalPayment payment = new PayPalPayment(new BigDecimal(cart.getTotalPriceIncTax()),"USD","fotobestelling",PayPalPayment.PAYMENT_INTENT_SALE);
+        Intent intent = new Intent(ShoppingCartActivity.this, PaymentActivity.class);
+        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
+        startActivityForResult(intent,REQUEST_CODE_PAYMENT);
+    }
+
+    private void saveOrder() throws JSONException {
         if (General.reachHost() && this.volleyHelper != null) {
 
             // Set a loadingmessage for the user whilst serverdata is being retrieved
-            this.pDialog.setMessage(String.valueOf(R.string.submitting_order_please_hold));
+            this.pDialog.setMessage(getApplicationContext().getString(R.string.submitting_order_please_hold));
 
             // create jsonobject with the data you want to set as parameters to the server Key Value
             JSONObject json = new JSONObject();
@@ -105,6 +134,21 @@ public class ShoppingCartActivity extends Activity {
                 obj.put("photoID", ol.getPhotoID());
                 obj.put("amount", ol.getAmount());
                 obj.put("sizeID", ol.getSizeID());
+
+                //add-on by Stefan to allow different file sizes
+                if (ol.getNeoBitmap()!=null){
+                    obj.put("Neo", "true");
+                    obj.put("filter", ol.getNeoBitmap().filterID);
+                    obj.put("X", ol.getNeoBitmap().x);
+                    obj.put("y", ol.getNeoBitmap().y);
+                    obj.put("width", ol.getNeoBitmap().width);
+                    obj.put("height", ol.getNeoBitmap().height);
+                } else {
+                    obj.put("Neo", "false");
+                }
+                if (ol.getProductId() != "") {
+                    obj.put("productID", ol.getProductId());
+                }
                 json.put("order" + count.toString(), obj.toString());
             }
             // The url extension of the method you want to call
@@ -168,6 +212,29 @@ public class ShoppingCartActivity extends Activity {
         }
     };
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_PAYMENT) {
+            if (resultCode == Activity.RESULT_OK) {
+                PaymentConfirmation confirm =
+                        data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+                if (confirm != null) {
+                    try {
+                        Log.i("test", confirm.toJSONObject().toString(4));
+                        Log.i("test", confirm.getPayment().toJSONObject().toString(4));
+                        this.saveOrder();
+                    } catch (JSONException e) {
+                        Log.e("test", "an extremely unlikely failure occurred: ", e);
+                    }
+                }
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                Log.i("test", "The user canceled.");
+            } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
+                Log.i(
+                        "test",
+                        "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
+            }
+        }
+        }
 
 }

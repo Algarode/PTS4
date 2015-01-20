@@ -16,7 +16,7 @@
     <string name="title_section1">Dashboard</string>
     <string name="title_section2">Change info</string>
     <string name="title_section3">Upload</string>
-    <string name="title_section4">Combine product en photo</string>
+    <string name="title_section4">Combine product and photo</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
@@ -98,18 +98,43 @@
     <string name="processing_images">Processing images, please wait</string>
     <string name="no_photos_selected">No photo have been selected</string>
     <string name="fetching_data">Fetching data...</string>
+    <string name="picture_settings_prices">Picture prices</string>
+    <string name="could_not_retrieve_prices">Could not retrieve prices</string>
     <string name="next">Next</string>
-
+    <string name="DeleteAlbum">Delete album</string>
+    <string name="SaveAlbum">Save album</string>
+    <string name="newAlbumName">New album</string>
+    <string name="title_activity_photographer_collection">Photographer collection</string>
+    <string name="changes_saved">Your changes are being saved 1 moment please</string>
+    <string name="sent">Sent</string>
+    <string name="gender">gender</string>
+    <string name="country">country</string>
+    <string name="start_date">start date</string>
+    <string name="end_date">end date</string>
+    <string name="activated">activated</string>
+    <string name="amount_sold">amount sold</string>
+    <string name="profit">profit</string>
+    <string name="prices_saved">saved</string>
 
     <string-array name="size_array">
         <item>1024x768</item>
         <item>1280x1024</item>
         <item>1920x1080</item>
     </string-array>
-
     <string-array name="land_array">
         <item>NL</item>
         <item>BE</item>
     </string-array>
+
+    <string name="title_activity_main_dashboard">MainDashboardActivity</string>
+    <string name="title_activity_fill_code">FillCodeActivity</string>
+    <string name="size">Size</string>
+    <string name="price">Price</string>
+    <string name="item_added_to_shoppingcart">Item added to shoppingcart</string>
+    <string name="gathering_order_data">Gathering order data</string>
+    <string name="no_product_selected">no product selected</string>
+    <string name="fetching_products">Fetching products...</string>
+    <string name="creating_album">Creating an album please wait...</string>
+    <string name="editing_album">Editing the album please wait...</string>
 
 </resources>

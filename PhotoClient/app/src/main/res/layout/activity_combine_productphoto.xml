@@ -1,27 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="60dp"
-    android:background="@color/WhiteSmoke">
+    android:padding="16dp"
+    android:background="@color/mainBackground">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageViewProductPhoto" />
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/nivBackground"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:scaleType="fitCenter"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true">
+    </com.android.volley.toolbox.NetworkImageView >
 
-    <Button
-        android:id="@+id/btnProductConfirm"
-        android:layout_width="250dp"
-        android:layout_height="75dp"
-        android:layout_alignParentBottom="true"
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/nivForeground"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:scaleType="fitCenter"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true">
+    </com.android.volley.toolbox.NetworkImageView >
+
+    <Button style="@style/tableHeader"
+        android:id="@+id/btnPhotoConfirm"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:text="@string/activity_collection_confirm_button"
         android:onClick="btnClick"
         android:background="@drawable/actionbar_background"
         android:textColor="@color/White"
         android:gravity="center"
-        android:layout_centerInParent="true"/>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
-</LinearLayout>
+</RelativeLayout>

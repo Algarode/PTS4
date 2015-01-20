@@ -4,12 +4,12 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:background="@color/WhiteSmoke">
+    android:padding="16dp"
+    android:background="@color/mainBackground">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="150dp"
         android:layout_weight="9"
-        android:paddingTop="10dp"
         android:background="@drawable/actionbar_background"
         android:orientation="horizontal">
     </LinearLayout>
@@ -23,18 +23,16 @@
             android:layout_height="match_parent"
             android:id="@+id/listViewProducts"
             android:layout_weight="1"
-            android:layout_margin="10dp"
+            android:minHeight="150dp"
             style="@style/ListView">
         </ListView>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:layout_margin="10dp"
-            android:padding="5dp"
+        <Button style="@style/tableHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:background="@drawable/actionbar_background"
-            android:textColor="@color/White"
-            android:textSize="30sp"
             android:text="@string/add_to_shoppingcart_product_confirm"
             android:onClick="addToShoppingCart"
             android:id="@+id/bt_add_shopping_cart"/>

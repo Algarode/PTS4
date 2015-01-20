@@ -33,6 +33,10 @@ public class ApplicationConfig extends Application {
         resources.add(com.accountmanagement.ChangeAccount.class);
         resources.add(com.generic.Auth.class);
         resources.add(com.generic.CodeClaim.class);
+        resources.add(com.generic.OrderInfo.class);
+        resources.add(com.generic.PhotoPrice.class);
+        resources.add(com.generic.Photographer.class);
+        resources.add(com.generic.Products.class);
         resources.add(com.generic.Register.class);
         resources.add(upload.UploadResource.class);
     }

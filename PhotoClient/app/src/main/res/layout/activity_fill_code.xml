@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/mainBackground"
+    tools:context="edwin.team.com.photoclient.Activities.FillCodeActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:background="@color/White">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Black"
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:background="@drawable/edittext_border"
+                android:id="@+id/UniekeCodeCash"
+                android:hint="Foto code">
+            </EditText>
+
+            <Button style="@style/tableHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/retrieve_dashboard"
+                android:background="@drawable/flat_button_background"
+                android:padding="10dp"
+                android:textSize="30sp"
+                android:id="@+id/button2"
+                android:onClick="getPhoto"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

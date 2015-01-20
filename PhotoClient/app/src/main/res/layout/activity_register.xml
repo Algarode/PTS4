@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="60dp"
-    android:background="@color/WhiteSmoke">
+    android:background="@color/mainBackground">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,7 +26,8 @@
                     android:imeOptions="actionNext"
                     android:id="@+id/etNaam"
                     android:hint="@string/name"
-                    android:layout_weight="0.7"/>
+                    android:layout_weight="0.7"
+                    android:textColor="@color/Black"/>
 
                 <EditText
                     android:layout_width="match_parent"
@@ -39,7 +39,8 @@
                     android:imeOptions="actionNext"
                     android:id="@+id/etTussenvoegsel"
                     android:hint="@string/tussenvoegsel"
-                    android:layout_weight="0.3"/>
+                    android:layout_weight="0.3"
+                    android:textColor="@color/Black"/>
             </TableRow>
             <TableRow
                 android:layout_marginBottom="15dp">
@@ -53,7 +54,8 @@
                     android:imeOptions="actionNext"
                     android:id="@+id/etAchternaam"
                     android:hint="@string/lastName"
-                    android:layout_weight="100"/>
+                    android:layout_weight="100"
+                    android:textColor="@color/Black"/>
             </TableRow>
             <TableRow
                 android:layout_marginBottom="15dp">
@@ -84,7 +86,8 @@
                     android:imeOptions="actionNext"
                     android:id="@+id/etStraatnaam"
                     android:hint="@string/Street"
-                    android:layout_weight="90"/>
+                    android:layout_weight="90"
+                    android:textColor="@color/Black"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -94,7 +97,8 @@
                     android:imeOptions="actionNext"
                     android:id="@+id/etHuisnummer"
                     android:hint="@string/houseNumber"
-                    android:layout_weight="50"/>
+                    android:layout_weight="50"
+                    android:textColor="@color/Black"/>
             </TableRow>
             <TableRow
                 android:layout_marginBottom="15dp">
@@ -107,7 +111,8 @@
                     android:padding="10dp"
                     android:id="@+id/etStad"
                     android:hint="@string/City"
-                    android:layout_weight="0.7"/>
+                    android:layout_weight="0.7"
+                    android:textColor="@color/Black"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -117,7 +122,8 @@
                     android:padding="10dp"
                     android:id="@+id/etPostcode"
                     android:hint="@string/zipcode"
-                    android:layout_weight="0.3"/>
+                    android:layout_weight="0.3"
+                    android:textColor="@color/Black"/>
             </TableRow>
             <TableRow
                 android:layout_marginBottom="15dp">
@@ -132,7 +138,8 @@
                     android:imeOptions="actionNext"
                     android:id="@+id/etEmail"
                     android:hint="@string/email_nl"
-                    android:layout_weight="100"/>
+                    android:layout_weight="100"
+                    android:textColor="@color/Black"/>
             </TableRow>
             <TableRow
                 android:layout_marginBottom="15dp">
@@ -147,14 +154,16 @@
                     android:imeOptions="actionNext"
                     android:id="@+id/etWachtwoord"
                     android:hint="@string/login_password"
-                    android:layout_weight="100"/>
+                    android:layout_weight="100"
+                    android:textColor="@color/Black"/>
             </TableRow>
             <TableRow
                 android:layout_marginBottom="15dp">
                 <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/spinnerLand"/>
+                    android:id="@+id/spinnerLand"
+                    android:textColor="@color/Black"/>
             </TableRow>
             <TableRow
                 android:layout_marginBottom="15dp">

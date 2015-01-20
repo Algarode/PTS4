@@ -15,7 +15,21 @@ public class ImageCollection implements Serializable {
     private ArrayList<Price> prices;
     private Integer sizePos;
     private Integer amount;
+    private Integer sold;
+    private Double profit;
+    private boolean checked;
     NumberFormat format = NumberFormat.getCurrencyInstance();
+
+    public ImageCollection (String imageUrl, String id,ArrayList<Price> prices, Integer amountSold, Double profit) {
+        this.imageUrl = imageUrl;
+        this.id = id;
+        this.prices = prices;
+        this.amount = 1;
+        this.sizePos = 0;
+        this.sold = amountSold;
+        this.profit = profit;
+        this.checked =false;
+    }
 
     public ImageCollection (String imageUrl, String id,ArrayList<Price> prices) {
         this.imageUrl = imageUrl;
@@ -23,6 +37,9 @@ public class ImageCollection implements Serializable {
         this.prices = prices;
         this.amount = 1;
         this.sizePos = 0;
+        this.sold = 0;
+        this.profit = 0d;
+        this.checked =false;
     }
 
     public void setImageByte(byte[] imageByte){
@@ -47,6 +64,10 @@ public class ImageCollection implements Serializable {
         return priceAdapter;
     }
 
+    public Integer getSold() { return this.sold;}
+
+    public Double getProfit() {return this.profit;}
+
     public Integer getAmount(){ return this.amount;}
 
     public void setAmount(int amount){
@@ -69,4 +90,13 @@ public class ImageCollection implements Serializable {
         Price price = this.prices.get(sizePos);
         return String.valueOf(price.getHeight()) + " x " + String.valueOf(price.getWidth());
     }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
 }

@@ -1,0 +1,49 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edwin.team.com.photoclient.Fragments.PhotographerAlbum"
+    android:background="@color/WhiteSmoke"
+    android:id="@+id/fragment_photographer_album">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/etAlbumName"
+        android:layout_width="250dp"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:hint="Name of the album"/>
+    <Button
+        android:id="@+id/btnCreateAlbum"
+        android:layout_width="250dp"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:text="Create an album"
+        android:background="@drawable/actionbar_background"
+        android:textColor="@color/White"
+        android:textSize="25dp"
+        android:gravity="center"
+        android:layout_centerInParent="true"/>
+
+
+
+
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnCreateAlbum"
+        android:layout_alignParentTop="true"
+        android:clickable="true"
+        android:columnWidth="180dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:id="@+id/gridviewPhotographerAlbum">
+    </GridView>
+
+    </RelativeLayout>
+</FrameLayout>

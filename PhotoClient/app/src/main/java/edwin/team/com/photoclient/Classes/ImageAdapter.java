@@ -1,23 +1,16 @@
 package edwin.team.com.photoclient.Classes;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TreeMap;
 
 import edwin.team.com.photoclient.R;
 
@@ -59,7 +52,7 @@ public class ImageAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.image_grid_layout, null);
 
-        NetworkImageView image = (NetworkImageView )view.findViewById(R.id.grid_item_image);
+        final NetworkImageView image = (NetworkImageView )view.findViewById(R.id.grid_item_image);
 
         image.setImageUrl(collection.get(position).getImageUrl(),imageLoader);
         image.setDefaultImageResId(R.drawable.loading);
@@ -67,9 +60,29 @@ public class ImageAdapter extends BaseAdapter {
         image.setId(position);
 
 
+        if(General.ROLEID == 2){
+            image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ShowDialog.showPhotoStatistics(context,image,collection.get(position));
+                }
+            });
+        }
+
         CheckBox cbox = (CheckBox)view.findViewById(R.id.grid_item_checkbox);
         cbox.setTag(position);
 
         return view;
+    }
+
+    public void unCheckEverything()
+    {
+        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.image_grid_layout, null);
+
+        for( int i = 0; i < getCount(); i++){
+            CheckBox cbox = (CheckBox)view.findViewById(R.id.grid_item_checkbox);
+            cbox.setChecked(false);
+        }
     }
 }

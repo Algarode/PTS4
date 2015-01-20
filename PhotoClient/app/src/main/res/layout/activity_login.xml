@@ -38,7 +38,7 @@
                         android:background="@drawable/edittext_border"
                         android:id="@+id/login_username"
                         android:hint="@string/login_username"
-                        android:text="r@r.com"
+                        android:text="u"
                         android:inputType="textEmailAddress"
                         android:layout_weight="0.9" >
                     </EditText>
@@ -63,7 +63,7 @@
                         android:padding="10dp"
                         android:id="@+id/login_password"
                         android:background="@drawable/edittext_border"
-                        android:text="qwerty"
+                        android:text="u"
                         android:hint="@string/password_login"
                         android:layout_weight="0.9" />
                 </TableRow>

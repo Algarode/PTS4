@@ -53,7 +53,7 @@ public class LoginActivity extends Activity {
             if(General.reachHost() && this.volleyHelper != null) {
 
                 // Set a loadingmessage for the user whilst serverdata is being retrieved
-                pDialog.setMessage(String.valueOf(R.string.verifying_login));
+                pDialog.setMessage(getApplicationContext().getString(R.string.verifying_login));
 
                 // create jsonobject with the data you want to set as parameters to the server Key Value
                 JSONObject json = new JSONObject();
@@ -73,7 +73,7 @@ public class LoginActivity extends Activity {
                         if(result){
                             General.ROLEID = response.optInt("role");
                             General.USERID = response.optInt("userID");
-                            Intent dashBoarIntent = new Intent(getApplicationContext(),DashboardActivity.class);
+                            Intent dashBoarIntent = new Intent(getApplicationContext(),MainDashboardActivity.class);
                             startActivity(dashBoarIntent);
                         }
                         else{
@@ -104,11 +104,6 @@ public class LoginActivity extends Activity {
 
     public void toRegister(View view){
         Intent intent = new Intent(this, RegistrationActivity.class);
-        this.startActivity(intent);
-    }
-
-    public void skiplogin(View v){
-        Intent intent = new Intent(this, DashboardActivity.class);
         this.startActivity(intent);
     }
 }

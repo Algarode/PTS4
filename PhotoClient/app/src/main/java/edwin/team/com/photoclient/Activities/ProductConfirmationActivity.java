@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -58,7 +59,10 @@ public class ProductConfirmationActivity extends Activity {
         if(imageCollectionList.size() > 0){
             for(ImageCollection col : imageCollectionList){
                 AppController.getShoppingCart().addOrderLine(col.getId(),col.getPrice(),col.getSizePriceID(),col.getAmount(),bbac.toBitmap(col.getImageByte()),col.getSizeName());
+                this.imageCollectionList.remove(col);
             }
+            this.updateListview();
+            Toast.makeText(ProductConfirmationActivity.this, R.string.item_added_to_shoppingcart, Toast.LENGTH_SHORT).show();
         }
     }
 }

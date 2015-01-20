@@ -36,12 +36,12 @@ public class ProductPhoto implements Serializable {
     @NotNull
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "photoID", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Photo photoID;
     @JoinColumn(name = "productID", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Product productID;
+    @JoinColumn(name = "photoID", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Photo photoID;
 
     public ProductPhoto() {
     }
@@ -58,20 +58,20 @@ public class ProductPhoto implements Serializable {
         this.id = id;
     }
 
-    public Photo getPhotoID() {
-        return photoID;
-    }
-
-    public void setPhotoID(Photo photoID) {
-        this.photoID = photoID;
-    }
-
     public Product getProductID() {
         return productID;
     }
 
     public void setProductID(Product productID) {
         this.productID = productID;
+    }
+
+    public Photo getPhotoID() {
+        return photoID;
+    }
+
+    public void setPhotoID(Photo photoID) {
+        this.photoID = photoID;
     }
 
     @Override

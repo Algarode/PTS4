@@ -10,23 +10,23 @@
         android:orientation="horizontal">
         <ImageView
             android:layout_width="170dp"
-            android:layout_height="120dp"
             android:id="@+id/li_photo"
             android:scaleType="fitXY"
             android:adjustViewBounds="true"
             android:layout_gravity="center"
             android:paddingTop="10dp"
             android:paddingLeft="20dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="0dp"
             android:paddingBottom="10dp"
-            />
+            android:layout_height="match_parent" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="35dp"
             android:layout_toRightOf="@id/li_photo">
         <TextView
-            android:layout_width="180dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="@color/MainTextColor"
             android:textSize="20sp"
@@ -34,7 +34,8 @@
             android:id="@+id/li_name"
             />
         <TextView
-            android:layout_width="180dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="@color/MainTextColor"
             android:textSize="20sp"
@@ -43,17 +44,20 @@
             android:layout_toRightOf="@id/li_name"
             />
         <EditText
-            android:layout_width="180dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textColor="@color/MainTextColor"
             android:textSize="20sp"
             android:layout_marginLeft="30dp"
             android:imeOptions="actionDone"
+            android:background="@drawable/edittext_border"
             android:layout_toRightOf="@id/li_measure"
             android:id="@+id/li_amount"/>
         <TextView
-            android:layout_width="180dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="@color/MainTextColor"
             android:textSize="20sp"
@@ -61,7 +65,8 @@
             android:layout_toRightOf="@id/li_amount"
             android:id="@+id/li_pieceprice"/>
         <TextView
-            android:layout_width="180dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="@color/MainTextColor"
             android:textSize="20sp"

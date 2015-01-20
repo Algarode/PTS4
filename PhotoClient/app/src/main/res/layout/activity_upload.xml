@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".LoginActivity"
-    android:background="@color/WhiteSmoke">
+    android:background="@color/mainBackground">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -30,7 +31,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_weight="5"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:background="@color/White">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,13 +43,11 @@
             android:textSize="35dp"
             android:layout_marginTop="20dp"/>
 
-        <Button
+        <Button style="@style/tableHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="75dp"
             android:layout_marginTop="50dp"
-            android:padding="25dp"
             android:background="@drawable/actionbar_background"
-            android:textColor="@color/White"
             android:text="@string/upload_bt_select"
             android:textSize="30sp"
             android:onClick="selectImage"

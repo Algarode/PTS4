@@ -59,7 +59,7 @@ public class UploadActivity extends Activity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
-        startActivityForResult(Intent.createChooser(intent, String.valueOf(R.string.select_picture)), SELECT_PICTURE);
+        startActivityForResult(Intent.createChooser(intent, getApplicationContext().getString(R.string.select_picture)), SELECT_PICTURE);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -119,8 +119,9 @@ public class UploadActivity extends Activity {
 
 
     public void upload(View view) throws ExecutionException, InterruptedException, JSONException, IOException {
+        UploadManager umanager;
         if(files.size() != 0){
-            UploadManager umanager = new UploadManager(this);
+            umanager = new UploadManager(this);
             umanager.setOnTaskFinishedEvent(new UploadManager.OnTaskExecutionFinished() {
                 @Override
                 public void OnTaskFinishedEvent(String Reslut) {
@@ -139,7 +140,5 @@ public class UploadActivity extends Activity {
             Toast t = Toast.makeText(this,R.string.select_images_first,Toast.LENGTH_SHORT);
             t.show();
         }
-
-
     }
 }
